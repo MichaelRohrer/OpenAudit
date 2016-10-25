@@ -13,6 +13,16 @@ var config = {
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   },
 
+  travis: {
+    root: rootPath,
+    app: {
+      name: 'code'
+    },
+    port: process.env.PORT || 3000,
+    db: 'mongodb://localhost/code-development',
+    jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
+  },
+
   test: {
     root: rootPath,
     app: {
