@@ -10,6 +10,7 @@ var config = {
     },
     port: process.env.PORT || 3000,
     db: 'mongodb://mongo/code-development',
+		apiUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   },
 
@@ -20,6 +21,7 @@ var config = {
     },
     port: process.env.PORT || 3000,
     db: 'mongodb://localhost/code-development',
+		apiUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   },
 
