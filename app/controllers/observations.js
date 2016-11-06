@@ -20,7 +20,7 @@ router.post('/', function (req, res, next) {
                 return next(err);
             }
         }
-        //realtime.notifyObservation(req.body);
+        realtime.notifyObservation(req.body);
         return res.status(201).location('/observations/' + newObservation._id).end();
     });
 });
