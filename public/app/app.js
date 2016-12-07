@@ -18,7 +18,7 @@
 		'ngMdIcons',
 		'ngCookies',
 		'ngAnimate',
-		'ngTouch',
+		//'ngTouch',
 		'ngSanitize',
 		'ui.router',
 		'home',
