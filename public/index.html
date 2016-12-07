@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="openaudit">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Landing Page - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">Open Audit</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a ui-sref="login">Login</a>
+                    </li>
+                    <li>
+						<a ui-sref="managerooms">My Rooms</a>
+                    </li>
+                    <li>
+						<a ui-sref="watchrooms">Available Rooms</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-wrapper">
+
+		<!-- Content -->
+		<div class="page-container" ui-view></div>
+
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="copyright text-muted small">Copyright &copy; Open Audit - Thomas Hernandez & Michael Rohrer</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+    </div>
+    <!-- /.content-section-a -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.js"></script>
+
+
+	<!-- injector:js -->
+	<script src="/src/bower_components/jquery/dist/jquery.js"></script>
+	<script src="/src/bower_components/es5-shim/es5-shim.js"></script>
+	<script src="/src/bower_components/json3/lib/json3.min.js"></script>
+	<script src="/src/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/src/bower_components/angular/angular.js"></script>
+	<script src="/src/bower_components/angular-touch/angular-touch.js"></script>
+	<script src="/src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="/src/bower_components/angular-aria/angular-aria.js"></script>
+	<script src="/src/bower_components/angular-mocks/angular-mocks.js"></script>
+	<script src="/src/bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="/src/bower_components/angular-animate/angular-animate.js"></script>
+	<script src="/src/bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="/src/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="/src/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+	<script src="/src/bower_components/angular-messages/angular-messages.js"></script>
+	<script src="/src/bower_components/angular-material/angular-material.js"></script>
+	<script src="/src/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="/src/bower_components/chart.js/dist/Chart.js"></script>
+	<script src="/src/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+	<script src="/app/app.js"></script>
+	<script src="/app/app.config.js"></script>
+	<script src="/app/modules/activepoll/activepollModule.js"></script>
+	<script src="/app/modules/adminpoll/adminpollModule.js"></script>
+	<script src="/app/modules/home/homeModule.js"></script>
+	<script src="/app/modules/login/loginModule.js"></script>
+	<script src="/app/modules/managerooms/manageroomsModule.js"></script>
+	<script src="/app/modules/passivepoll/passivepollModule.js"></script>
+	<script src="/app/modules/watchrooms/watchroomsModule.js"></script>
+	<script src="/app/modules/activepoll/activepollRoute.js"></script>
+	<script src="/app/modules/adminpoll/adminpollRoute.js"></script>
+	<script src="/app/modules/home/homeRoute.js"></script>
+	<script src="/app/modules/login/loginRoute.js"></script>
+	<script src="/app/modules/managerooms/manageroomsRoute.js"></script>
+	<script src="/app/modules/passivepoll/passivepollRoute.js"></script>
+	<script src="/app/modules/watchrooms/watchroomsRoute.js"></script>
+	<script src="/app/modules/activepoll/activepollCtrl.js"></script>
+	<script src="/app/modules/adminpoll/adminpollCtrl.js"></script>
+	<script src="/app/modules/home/homeCtrl.js"></script>
+	<script src="/app/modules/layouts/main-page/mainPageCtrl.js"></script>
+	<script src="/app/modules/layouts/side-nav/sidenavCtrl.js"></script>
+	<script src="/app/modules/login/loginCtrl.js"></script>
+	<script src="/app/modules/managerooms/manageroomsCtrl.js"></script>
+	<script src="/app/modules/passivepoll/passivepollCtrl.js"></script>
+	<script src="/app/modules/watchrooms/watchroomsCtrl.js"></script>
+	<script src="/app/modules/activepoll/activepollService.js"></script>
+	<script src="/app/modules/adminpoll/adminpollService.js"></script>
+	<script src="/app/modules/home/homeService.js"></script>
+	<script src="/app/modules/layouts/nav-bar/navBarService.js"></script>
+	<script src="/app/modules/layouts/side-nav/sidenavService.js"></script>
+	<script src="/app/modules/login/loginService.js"></script>
+	<script src="/app/modules/managerooms/manageroomsService.js"></script>
+	<script src="/app/modules/passivepoll/passivepollService.js"></script>
+	<script src="/app/modules/watchrooms/watchroomsService.js"></script>
+	<!-- endinjector -->
+
+</body>
+
+</html>

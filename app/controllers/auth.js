@@ -13,15 +13,15 @@ module.exports = function (app) {
 
 router.post('/', function (req, res, next) {
 
-    var username = req.body.username;
+    var email = req.body.email;
     var password = req.body.password;
 
-    if (username === undefined || password === undefined) {
+    if (email === undefined || password === undefined) {
         return next({status: 401, message: "Please provide credentials"});
     }
 
     User.findOne({
-        'username': username
+        'email': email
     })
     .then(function(user) {
         if (user === null) {
@@ -31,14 +31,14 @@ router.post('/', function (req, res, next) {
         return user;
     })
     .then(function(user) {
-        return bcrypt.compare(password, user.password)
+        return bcrypt.compare(password, bcrypt.hash(user.password))
         .then(function(){
             return user;
         })
     })
     .then(function(user) {
         var data = {
-            "who": user.username,
+            "who": user.name,
             "where": "here"
         };
         var token = jwt.sign(data, config.jwtsecret);

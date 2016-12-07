@@ -9,7 +9,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://mongo/code-development',
+    db: "mongodb://heroku_13hjrbgd:4edg2qi1c1rcs6g9rlnn0711c@ds063186.mlab.com:63186/heroku_13hjrbgd",//'mongodb://localhost/code-development',
 		apiUrl: 'http://localhost:3000',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
@@ -21,7 +21,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/code-development',
+    db: "mongodb://heroku_13hjrbgd:4edg2qi1c1rcs6g9rlnn0711c@ds063186.mlab.com:63186/heroku_13hjrbgd",//'mongodb://localhost/code-development',
 		apiUrl: 'http://localhost:3000',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
@@ -33,7 +33,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://mongo/code-test',
+    db: "mongodb://heroku_13hjrbgd:4edg2qi1c1rcs6g9rlnn0711c@ds063186.mlab.com:63186/heroku_13hjrbgd",//'mongodb://localhost/code-test',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   },
@@ -44,7 +44,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://mongo/code-production',
+    db: "mongodb://heroku_13hjrbgd:4edg2qi1c1rcs6g9rlnn0711c@ds063186.mlab.com:63186/heroku_13hjrbgd",//'mongodb://localhost/code-production',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   }
 };

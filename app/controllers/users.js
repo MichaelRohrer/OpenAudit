@@ -26,3 +26,19 @@ router.get('/:id', function(req, res, next) {
         res.json(user);
     })
 });
+
+router.post('/', function (req, res, next){
+
+    var newUser = new User(req.body);
+    newUser.save(function (err, doc, n) {
+        if (err) {
+            console.log(err);
+            if (err.name === "ValidationError") {
+                return next({ status: 422, message: "Invalid observation data" });
+            } else {
+                return next(err);
+            }
+        }
+        return res.status(201).location('/users/' + newUser._id).end();
+    });
+});
