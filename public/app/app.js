@@ -13,8 +13,8 @@
 	angular.module('openaudit', [
 		'ngResource',
 		'ngAria',
-		 'ui.bootstrap',
-		 'ngMaterial',
+		'ui.bootstrap',
+		'ngMaterial',
 		'ngMdIcons',
 		'ngCookies',
 		'ngAnimate',
