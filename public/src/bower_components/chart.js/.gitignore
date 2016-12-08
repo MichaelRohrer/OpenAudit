@@ -2,7 +2,6 @@
 /custom
 /docs/index.md
 /node_modules
-
 .DS_Store
 .idea
 .vscode
