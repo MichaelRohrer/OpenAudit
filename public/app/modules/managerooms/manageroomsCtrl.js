@@ -2,38 +2,38 @@
 	'use strict';
 
 	/**
-	* @ngdoc function
-	* @name app.controller:manageroomsCtrl
-	* @description
-	* # manageroomsCtrl
-	* Controller of the app
-	*/
+	 * @ngdoc function
+	 * @name app.controller:manageroomsCtrl
+	 * @description
+	 * # manageroomsCtrl
+	 * Controller of the app
+	 */
 
-  	angular
+	angular
 		.module('managerooms')
 		.controller('ManageroomsCtrl', Managerooms);
 
-		Managerooms.$inject = ['$state'];
+	Managerooms.$inject = ['$state'];
 
-		/*
-		* recommend
-		* Using function declarations
-		* and bindable members up top.
-		*/
+	/*
+	 * recommend
+	 * Using function declarations
+	 * and bindable members up top.
+	 */
 
-		function Managerooms($state) {
-			/*jshint validthis: true */
-			var vm = this;
+	function Managerooms($state) {
+		/*jshint validthis: true */
+		var vm = this;
 
-			vm.showme = false;
+		vm.showme = false;
 
-			vm.createRoom = function($state){
+		vm.createRoom = function($state){
 
-				$state.go('adminpoll', {}, {reload: true});
-			};
+			$state.go('adminpoll', {}, {reload: true});
+		};
 
-			vm.state = $state;
+		vm.state = $state;
 
-		}
+	}
 
 })();

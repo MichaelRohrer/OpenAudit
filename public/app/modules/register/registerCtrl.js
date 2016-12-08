@@ -3,17 +3,17 @@
 
 	/**
 	 * @ngdoc function
-	 * @name app.controller:passivepollCtrl
+	 * @name app.controller:registerCtrl
 	 * @description
-	 * # passivepollCtrl
+	 * # registerCtrl
 	 * Controller of the app
 	 */
 
 	angular
-		.module('passivepoll')
-		.controller('PassivepollCtrl', Passivepoll);
+		.module('register')
+		.controller('RegisterCtrl', Register);
 
-	Passivepoll.$inject = [];
+	Register.$inject = [];
 
 	/*
 	 * recommend
@@ -21,7 +21,7 @@
 	 * and bindable members up top.
 	 */
 
-	function Passivepoll() {
+	function Register() {
 		/*jshint validthis: true */
 		var vm = this;
 

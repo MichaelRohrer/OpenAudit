@@ -2,29 +2,29 @@
 	'use strict';
 
 	/**
-	* @ngdoc function
-	* @name app.controller:watchroomsCtrl
-	* @description
-	* # watchroomsCtrl
-	* Controller of the app
-	*/
+	 * @ngdoc function
+	 * @name app.controller:watchroomsCtrl
+	 * @description
+	 * # watchroomsCtrl
+	 * Controller of the app
+	 */
 
-  	angular
+	angular
 		.module('watchrooms')
 		.controller('WatchroomsCtrl', Watchrooms);
 
-		Watchrooms.$inject = [];
+	Watchrooms.$inject = [];
 
-		/*
-		* recommend
-		* Using function declarations
-		* and bindable members up top.
-		*/
+	/*
+	 * recommend
+	 * Using function declarations
+	 * and bindable members up top.
+	 */
 
-		function Watchrooms() {
-			/*jshint validthis: true */
-			var vm = this;
+	function Watchrooms() {
+		/*jshint validthis: true */
+		var vm = this;
 
-		}
+	}
 
 })();

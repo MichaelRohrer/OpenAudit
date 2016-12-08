@@ -13,12 +13,12 @@
 	angular.module('openaudit', [
 		'ngResource',
 		'ngAria',
-		'ui.bootstrap',
-		'ngMaterial',
+		 'ui.bootstrap',
+		 'ngMaterial',
 		'ngMdIcons',
 		'ngCookies',
 		'ngAnimate',
-		//'ngTouch',
+		'ngTouch',
 		'ngSanitize',
 		'ui.router',
 		'home',
@@ -28,6 +28,7 @@
 		'managerooms',
 		'watchrooms',
 		'login',
+		'register',
 	]);
 
 })();

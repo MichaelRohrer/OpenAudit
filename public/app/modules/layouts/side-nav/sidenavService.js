@@ -51,6 +51,11 @@
 							name: 'Login'
 					},
 			    
+					{
+						link: 'register',
+							name: 'Register'
+					},
+			    
 		  	];
 
 			return {

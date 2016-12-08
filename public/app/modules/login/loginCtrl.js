@@ -2,29 +2,29 @@
 	'use strict';
 
 	/**
-	* @ngdoc function
-	* @name app.controller:loginCtrl
-	* @description
-	* # loginCtrl
-	* Controller of the app
-	*/
+	 * @ngdoc function
+	 * @name app.controller:loginCtrl
+	 * @description
+	 * # loginCtrl
+	 * Controller of the app
+	 */
 
-  	angular
+	angular
 		.module('login')
 		.controller('LoginCtrl', Login);
 
-		Login.$inject = [];
+	Login.$inject = [];
 
-		/*
-		* recommend
-		* Using function declarations
-		* and bindable members up top.
-		*/
+	/*
+	 * recommend
+	 * Using function declarations
+	 * and bindable members up top.
+	 */
 
-		function Login() {
-			/*jshint validthis: true */
-			var vm = this;
+	function Login() {
+		/*jshint validthis: true */
+		var vm = this;
 
-		}
+	}
 
 })();
