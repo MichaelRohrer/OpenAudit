@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="file://$USER_HOME$/Desktop/server/OpenAudit" libraries="{iob-server/node_modules}" />
-    <file url="file://$USER_HOME$/Desktop/server/OpenAudit/public" libraries="{iob-server/public/node_modules}" />
-  </component>
-</project>
