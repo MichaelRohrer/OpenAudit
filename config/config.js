@@ -33,7 +33,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: progress.env.DATABASE,//'mongodb://localhost/code-test',
+    db: process.env.DATABASE,//'mongodb://localhost/code-test',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   },
