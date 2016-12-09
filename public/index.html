@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Landing Page - Start Bootstrap Theme</title>
+    <title>OpenAudit</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -24,9 +24,9 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<!-- <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+	<!-- <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!--[endif]-->
 
 </head>
 
@@ -48,15 +48,18 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <!--<li>
                         <a ui-sref="login"><i class="fa fa-fw"></i>Login</a>
+                    </li>-->
+                    <li>
+						<a ui-sref="managerooms">Create Manage Rooms</a>
                     </li>
                     <li>
-						<a ui-sref="managerooms"><i class="fa fa-fw"></i>My Rooms</a>
+						<a ui-sref="watchrooms">Join Follow Rooms</a>
                     </li>
-                    <li>
-						<a ui-sref="watchrooms"><i class="fa fa-fw"></i>Available Rooms</a>
-                    </li>
+					<li>
+						<a href="https://michaelrohrer.github.io/OpenAudit/">Landing Page<i class="fa fa-fw"></i></a>
+					</li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -87,7 +90,7 @@
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 
 	<!-- injector:js -->
