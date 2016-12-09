@@ -30,6 +30,11 @@
 		vm.list = [1, 2];
 		vm.counter = 2;
 
+
+		vm.showme1 = false;
+		vm.data = [70, 20, 10];
+		vm.labels = ["Yes", "No", "Maybe"];
+
 		vm.submit = function () {
 
 		};

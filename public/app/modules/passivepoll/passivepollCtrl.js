@@ -25,6 +25,9 @@
 		/*jshint validthis: true */
 		var vm = this;
 
+		vm.showme = false;
+		vm.data = [70, 20, 10];
+		vm.labels = ["Yes", "No", "Maybe"];
 	}
 
 })();

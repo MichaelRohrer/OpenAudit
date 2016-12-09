@@ -9,6 +9,6 @@
 	 * Module of the app
 	 */
 
-  	angular.module('passivepoll', []);
+  	angular.module('passivepoll', ['chart.js']);
 
 })();
