@@ -44,7 +44,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: process.env.DATABASE,//"mongodb://heroku_13hjrbgd:4edg2qi1c1rcs6g9rlnn0711c@ds063186.mlab.com:63186/heroku_13hjrbgd",//'mongodb://localhost/code-production',
+    db: process.env.DATABASE,//'mongodb://localhost/code-production',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   }
 };
