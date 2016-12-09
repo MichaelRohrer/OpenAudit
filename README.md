@@ -7,27 +7,29 @@ This project is part of the TWEB course taught at HEIG-VD by professor Olivier L
 
 ## Sitemap
 
-Home/Login page: [https://lit-tor-91278.herokuapp.com/#!/login](https://lit-tor-91278.herokuapp.com/#!/login)
+Home/Login page: [https://safe-citadel-55958.herokuapp.com/#!/login](https://safe-citadel-55958.herokuapp.com/#!/login)
 
-My rooms page: [https://lit-tor-91278.herokuapp.com/#!/managerooms](https://lit-tor-91278.herokuapp.com/#!/managerooms)
+Register page: [https://safe-citadel-55958.herokuapp.com/#!/register](https://safe-citadel-55958.herokuapp.com/#!/register)
 
-Manage question page: [https://lit-tor-91278.herokuapp.com/#!/adminpoll](https://lit-tor-91278.herokuapp.com/#!/adminpoll)
+My rooms page: [https://safe-citadel-55958.herokuapp.com/#!/managerooms](https://safe-citadel-55958.herokuapp.com/#!/managerooms)
 
-Available rooms page:[https://lit-tor-91278.herokuapp.com/#!/watchrooms](https://lit-tor-91278.herokuapp.com/#!/watchrooms)
+Manage question page: [https://safe-citadel-55958.herokuapp.com/#!/adminpoll](https://safe-citadel-55958.herokuapp.com/#!/adminpoll)
 
-Active poll page:[https://lit-tor-91278.herokuapp.com/#!/activepoll](https://lit-tor-91278.herokuapp.com/#!/activepoll)
+Available rooms page:[https://safe-citadel-55958.herokuapp.com/#!/watchrooms](https://safe-citadel-55958.herokuapp.com/#!/watchrooms)
 
-Passive poll page:[https://lit-tor-91278.herokuapp.com/#!/passivepoll](https://lit-tor-91278.herokuapp.com/#!/passivepoll)
+Active poll page:[https://safe-citadel-55958.herokuapp.com/#!/activepoll](https://safe-citadel-55958.herokuapp.com/#!/activepoll)
+
+Passive poll page:[https://safe-citadel-55958.herokuapp.com/#!/passivepoll](https://safe-citadel-55958.herokuapp.com/#!/passivepoll)
 
 ## Description
 
 This web application will be based on simple Interactive polls that can be found all over the internet. It is deployed on Heroku but its landing page on GitHub pages.
 
-For the moment, the login page is used like a home page. Every user must first register and then proceed to their [authentication](https://lit-tor-91278.herokuapp.com/#!/login). Thanks to that, we will be able to recognize, with a token, a user all along the different actions that he will be able to perform on our web application. 
+For the moment, the login page is used like a home page. Every user must first [register](https://safe-citadel-55958.herokuapp.com/#!/register) and then proceed to their [authentication](https://safe-citadel-55958.herokuapp.com/#!/login). Thanks to that, we will be able to recognize, with a token, a user all along the different actions that he will be able to perform on our web application. 
 
 Of course, those two functionalities will be available from our home page, which will then give access to the remaining part of the web app. Since there are not implemented yet, everything is reachable at this point of the project.
 
-In the top right menu, you can click on [My Rooms](https://lit-tor-91278.herokuapp.com/#!/managerooms). Here, if you click on the "new room" button, a user can create a room, which will then contains the interaction between the question he would like to ask and the auditors. You can also see that all the previously created room from
+In the top right menu, you can click on [My Rooms](https://safe-citadel-55958.herokuapp.com/#!/managerooms). Here, if you click on the "new room" button, a user can create a room, which will then contains the interaction between the question he would like to ask and the auditors. You can also see that all the previously created room from
 
 All the rooms will be available inside the showRooms page
 
@@ -60,11 +62,11 @@ Note that those last functionalities will only be implemented if enought time re
 ## Landing page
 
 Our landing page can be found on the following link:
-- [https://michaelrohrer.github.io/tweb_github_explorer/](https://michaelrohrer.github.io/tweb_github_explorer/)
+- [https://michaelrohrer.github.io/OpenAudit/](https://michaelrohrer.github.io/OpenAudit/)
 
 ## Technology used
 
-- Angular V2
+- Angular V1
 - JavaScript
 - Node
 - GitHub pages
