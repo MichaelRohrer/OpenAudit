@@ -21,26 +21,12 @@
 							</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td>1</td>
-								<td>TWEB</td>
-								<td>Mike</td>
-								<td><button type="button" class="btn btn-primary" ui-sref="activepoll">Join</button></td>
-								<td><button type="button" class="btn btn-primary" ui-sref="passivepoll">Follow</button></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>AMT</td>
-								<td>Thomas</td>
-								<td><button type="button" class="btn btn-primary" ui-sref="activepol"l>Join</button></td>
-								<td><button type="button" class="btn btn-primary" ui-sref="passivepoll">Follow</button></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>SYM</td>
-								<td>Mike</td>
-								<td><button type="button" class="btn btn-primary">Join</button></td>
-								<td><button type="button" class="btn btn-primary">Follow</button></td>
+							<tr ng-repeat="index in vm.rooms">>
+								<td>{{vm.nbRooms}}</td>
+								<td>{{index.name}}</td>
+								<td>{{index.owner}}</td>
+								<td><button type="button" class="btn btn-success" ui-sref="activepoll">Join</button></td>
+								<td><button type="button" class="btn btn-warning" ui-sref="passivepoll">Follow</button></td>
 							</tr>
 							</tbody>
 						</table>

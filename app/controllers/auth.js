@@ -13,25 +13,25 @@ module.exports = function (app) {
 
 router.post('/', function (req, res, next) {
 
-    var email = req.body.email;
+    var username = req.body.username;
     var password = req.body.password;
 
-    if (email === undefined || password === undefined) {
+    if (username === undefined || password === undefined) {
         return next({status: 401, message: "Please provide credentials"});
     }
 
     User.findOne({
-        'email': email
+        'username': username
     })
     .then(function(user) {
         if (user === null) {
-            throw new Error("user does not exist");
+            throw new Error("User does not exist");
         }
         console.log("Found user: " + user);
         return user;
     })
     .then(function(user) {
-        return bcrypt.compare(password, bcrypt.hash(user.password))
+        return bcrypt.compare(password, user.password)
         .then(function(){
             return user;
         })

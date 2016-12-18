@@ -21,34 +21,21 @@
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="table-responsive">
-								<form>
+								<form role="form">
 									<div class="form-group">
-										<input class="form-control" placeholder="Question">
+										<input ng-model="formData.question" class="form-control" placeholder="Question">
 									</div>
 
-									<table>
-										<thead>
-										<tr>
-											<th>Answers</th>
-										</tr>
-										</thead>
-										<tbody>
-										<tr ng-repeat="index in vm.list">
-											<td>
-												<div class="form-group">
-													<input class="form-control" placeholder="Possibility">
-												</div>
-											</td>
-										</tr>
-										</tbody>
-									</table>
+									<div class="form-group" ng-repeat="formfield in formData.dynamicFields">
+										<label class="control-label">
+											{{formfield.name}}
+										</label>
+										<input type="text" class="form-control" name="formfield.val" ng-model="formfield.val">
+									</div>
 
-									<button type="button" class="btn btn-primary btn-circle" ng-click="vm.addRow()"><i class="fa fa-plus"></i>
-									</button>
-									<button type="button" class="btn btn-primary btn-circle" ng-click="vm.removeRow()"><i class="fa fa-minus"></i>
-									</button>
-
-									<button type="button" class="btn btn-primary pull-right" ng-click="vm.submit()">Submit</button>
+									<button type="button" class="btn btn-primary btn-circle" ng-click="vm.addRow()"><i class="fa fa-plus"></i></button>
+									<button type="button" class="btn btn-primary btn-circle" ng-click="vm.removeRow()"><i class="fa fa-minus"></i></button>
+									<button type="button" class="btn btn-primary pull-right" ng-click="vm.submit(formData)">Submit</button>
 								</form>
 							</div>
 						</div>
@@ -124,3 +111,21 @@
 
 </div>
 
+<!--
+<table>
+										<thead>
+										<tr>
+											<th>Answers</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr ng-repeat="index in vm.list">
+											<td>
+												<div class="form-group">
+													<input ng-model="poss" + {{index}} class="form-control" placeholder="Possibility">
+												</div>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+-->

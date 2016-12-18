@@ -14,11 +14,11 @@
 					<!-- /.panel-heading -->
 					<div class="panel-body">
 						<div class="table-responsive">
-							<form>
+							<form role="form">
 								<div class="form-group">
-									<input class="form-control" placeholder="Name">
+									<input ng-model="name" class="form-control" placeholder="Name">
 								</div>
-								<button type="button" class="btn btn-primary pull-right" ng-click="vm.createRoom(vm.state)">Create</button>
+								<button ng-click="vm.createRoom()" type="submit" class="btn btn-primary pull-right">Create</button>
 							</form>
 						</div>
 					</div>
@@ -77,3 +77,21 @@
 		</div>
 	</div>
 </div>
+
+<!--
+
+<form role="form">
+				<div class="form-group">
+					<label>Owner</label>
+					<input ng-model="owner" class="form-control" placeholder="Owner">
+				</div>
+
+				<div class="form-group">
+					<label>Repo</label>
+					<input ng-model="repo" class="form-control" placeholder="Repo">
+				</div>
+
+				<button ng-click="update()" type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+-->

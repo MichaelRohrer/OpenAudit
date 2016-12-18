@@ -9,7 +9,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: process.env.DATABASE,//'mongodb://localhost/code-development',
+    db: /*process.env.DATABASE,*/'mongodb://localhost/code-production',
 		apiUrl: 'http://localhost:3000',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
@@ -21,7 +21,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: process.env.DATABASE,//'mongodb://localhost/code-development',
+    db: /*process.env.DATABASE,*/'mongodb://localhost/code-production',
 		apiUrl: 'http://localhost:3000',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
@@ -33,7 +33,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: process.env.DATABASE,//'mongodb://localhost/code-test',
+    db: /*process.env.DATABASE,*/'mongodb://localhost/code-production',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   },
@@ -44,7 +44,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: process.env.DATABASE,//'mongodb://localhost/code-production',
+    db: /*process.env.DATABASE,*/'mongodb://localhost/code-production',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   }
 };

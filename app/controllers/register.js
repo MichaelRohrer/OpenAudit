@@ -11,10 +11,11 @@ module.exports = function (app) {
 
 
 router.post('/', function (req, res, next) {
+
     var newUser = new User(req.body);
     var saltRounds = 10;
 
-    if (newUser.password === undefined || newUser.password.length < 8) {
+    if (newUser.password === undefined || newUser.password.length < 4) {
         return next({status: 422, message: "Password is mandatory and must be at least 8 characters long"});
     } 
 

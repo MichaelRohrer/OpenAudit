@@ -11,7 +11,10 @@ module.exports = function (app) {
 
 
 router.get('/', function (req, res, next) {
-    Room.find(function (err, rooms) {
+
+    var query = Room.find({}).select('name owner -_id');
+
+    query.exec(function (err, rooms) {
         if (err) return next(err);
         res.json(rooms);
     });
@@ -32,3 +35,21 @@ router.post('/', function (req, res, next) {
         return res.status(201).location('/rooms/' + newRoom._id).end();
     });
 });
+
+router.put('/', function (req, res, next) {
+
+    console.log(req.body.id);
+    console.log(req.body.data);
+
+    // find by some conditions and update
+    Room.findOneAndUpdate(
+        {_id: req.body.id},
+        {$push: {questions: req.body.data}},
+        function(err, model) {
+            if(err) return next(err);
+
+            console.log("Updated !");
+            return res.status(200).end();
+        });
+});
+
