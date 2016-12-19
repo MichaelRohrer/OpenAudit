@@ -21,12 +21,12 @@
 							</tr>
 							</thead>
 							<tbody>
-							<tr ng-repeat="index in vm.rooms">>
-								<td>{{vm.nbRooms}}</td>
-								<td>{{index.name}}</td>
-								<td>{{index.owner}}</td>
-								<td><button type="button" class="btn btn-success" ui-sref="activepoll">Join</button></td>
-								<td><button type="button" class="btn btn-warning" ui-sref="passivepoll">Follow</button></td>
+							<tr ng-repeat="index in vm.rooms" ng-if="!index.closed">
+									<td>{{$index + 1}}</td>
+									<td>{{index.name}}</td>
+									<td>{{index.owner}}</td>
+									<td><button type="button" class="btn btn-success" ui-sref="activepoll">Join</button></td>
+									<td><button type="button" class="btn btn-warning" ui-sref="passivepoll">Follow</button></td>
 							</tr>
 							</tbody>
 						</table>

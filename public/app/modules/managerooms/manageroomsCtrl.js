@@ -26,16 +26,24 @@
 		var vm = this;
 
 		vm.showme = false;
+
 		$rootScope.username = 'mike';
 
-		vm.state = $state;
-		vm.http = $http;
-		vm.scope = $scope;
+		$http({
+			method : "GET",
+			url : "/rooms",
+			headers: {
+				'Content-Type': 'application/json',
+				'Bearer': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3aGVyZSI6ImhlcmUiLCJpYXQiOjE0ODE5ODA4MTN9._0TcNxJ4_-ZNQ49Ku1ck0YnPpSnCNwiA2NPzuyNIXdE'
+			}
+		}).then(function mySucces(response) {
+			vm.rooms = response.data;
+		}, function myError(response) {
+			console.log("A problem occurred while loading the rooms");
+		});
 
-		vm.createRoom = function(){
 
-			console.log($scope.name);
-			console.log($rootScope.username);
+		vm.create = function(){
 
 			$http({
 				method : "POST",
@@ -49,15 +57,41 @@
 					owner: $rootScope.username
 				}
 			}).then(function () {
-					$rootScope.room = $scope.name;
-					$state.go('adminpoll', {}, {reload: true});
+					$state.transitionTo('adminpoll', {room: $scope.name});
 				});
 		};
+
+		vm.close = function (index) {
+			$http({
+				method : "PUT",
+				url : "/rooms" + "/" + vm.rooms[index].name,
+				headers: {
+					'Content-Type': 'application/json',
+					'Bearer': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3aGVyZSI6ImhlcmUiLCJpYXQiOjE0ODE5ODA4MTN9._0TcNxJ4_-ZNQ49Ku1ck0YnPpSnCNwiA2NPzuyNIXdE'
+				},
+				data: {
+					status: 1
+				}
+			}).then(function () {
+				console.log("Status updated!");
+			});
+		};
+
+		vm.open = function (index) {
+			$state.transitionTo('adminpoll', {room: vm.rooms[index].name});
+		};
+
+		vm.delete = function (index) {
+			$http({
+				method : "DELETE",
+				url : "/rooms" + "/" + vm.rooms[index].name,
+				headers: {
+					'Content-Type': 'application/json',
+					'Bearer': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3aGVyZSI6ImhlcmUiLCJpYXQiOjE0ODE5ODA4MTN9._0TcNxJ4_-ZNQ49Ku1ck0YnPpSnCNwiA2NPzuyNIXdE'
+				}
+			}).then(function () {
+				console.log("Room deleted!");
+			});
+		};
 	}
-
 })();
-
-/*return $http.post("/stats", { owner: $scope.owner, repo: $scope.repo })
- .then(function () {
- console.log("Statistics sent!");
- });*/

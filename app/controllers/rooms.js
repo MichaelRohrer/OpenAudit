@@ -12,7 +12,7 @@ module.exports = function (app) {
 
 router.get('/', function (req, res, next) {
 
-    var query = Room.find({}).select('name owner -_id');
+    var query = Room.find({}).select('name owner closed -_id');
 
     query.exec(function (err, rooms) {
         if (err) return next(err);
@@ -38,18 +38,48 @@ router.post('/', function (req, res, next) {
 
 router.put('/', function (req, res, next) {
 
-    console.log(req.body.id);
-    console.log(req.body.data);
 
-    // find by some conditions and update
-    Room.findOneAndUpdate(
-        {_id: req.body.id},
-        {$push: {questions: req.body.data}},
-        function(err, model) {
-            if(err) return next(err);
 
-            console.log("Updated !");
-            return res.status(200).end();
-        });
 });
 
+router.delete('/:id', function (req, res, next) {
+    var name = req.params["id"];
+
+    Room.findOneAndRemove({name: name}, function(err, model) {
+        if(err) return next(err);
+        console.log("Removed !");
+        return res.status(200).end();
+    });
+});
+
+router.put('/:id', function (req, res, next) {
+    var name = req.params["id"];
+
+    Room.findOneAndUpdate(
+        {name: name},
+        {closed: req.body.status},
+        function(err, model) {
+            if(err) return next(err);
+            console.log("Updated !");
+            return res.status(200).end();
+        }
+    );
+});
+
+router.post('/:id', function (req, res, next) {
+    var name = req.params["id"];
+
+    Room.findOneAndUpdate(
+        {name: name},
+        {$push: {questions: {
+            question : req.body.question,
+            possibilities: req.body.possibilities,
+            answers: req.body.answers
+        }}},
+        function(err, model) {
+            if(err) return next(err);
+            console.log("Updated !");
+            return res.status(201).end();
+        }
+    );
+});

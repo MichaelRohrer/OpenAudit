@@ -18,7 +18,7 @@
 								<div class="form-group">
 									<input ng-model="name" class="form-control" placeholder="Name">
 								</div>
-								<button ng-click="vm.createRoom()" type="submit" class="btn btn-primary pull-right">Create</button>
+								<button ng-click="vm.create()" type="submit" class="btn btn-primary pull-right">Create</button>
 							</form>
 						</div>
 					</div>
@@ -42,32 +42,21 @@
 							<tr>
 								<th>#</th>
 								<th>Name</th>
+								<th>Status</th>
 								<th>Open</th>
 								<th>Close</th>
 								<th>Delete</th>
 							</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td>1</td>
-								<td>TWEB</td>
-								<td><button type="button" class="btn btn-success">Open</button></td>
-								<td><button type="button" class="btn btn-warning">Close</button></td>
-								<td><button type="button" class="btn btn-danger">Delete</button></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>AMT</td>
-								<td><button type="button" class="btn btn-success">Open</button></td>
-								<td><button type="button" class="btn btn-warning">Close</button></td>
-								<td><button type="button" class="btn btn-danger">Delete</button></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>SYM</td>
-								<td><button type="button" class="btn btn-success">Open</button></td>
-								<td><button type="button" class="btn btn-warning">Close</button></td>
-								<td><button type="button" class="btn btn-danger">Delete</button></td>
+							<tr ng-repeat="index in vm.rooms">
+								<td>{{$index + 1}}</td>
+								<td>{{index.name}}</td>
+								<td ng-if="index.closed">Closed</td>
+								<td ng-if="!index.closed">Opened</td>
+								<td><button ng-click="vm.open($index)" type="button" class="btn btn-success">Open</button></td>
+								<td><button ng-click="vm.close($index)" type="submit" class="btn btn-warning">Close</button></td>
+								<td><button ng-click="vm.delete($index)" type="button" class="btn btn-danger">Delete</button></td>
 							</tr>
 							</tbody>
 						</table>
@@ -77,21 +66,3 @@
 		</div>
 	</div>
 </div>
-
-<!--
-
-<form role="form">
-				<div class="form-group">
-					<label>Owner</label>
-					<input ng-model="owner" class="form-control" placeholder="Owner">
-				</div>
-
-				<div class="form-group">
-					<label>Repo</label>
-					<input ng-model="repo" class="form-control" placeholder="Repo">
-				</div>
-
-				<button ng-click="update()" type="submit" class="btn btn-primary">Submit</button>
-			</form>
-
--->

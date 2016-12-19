@@ -13,7 +13,7 @@ angular.module('adminpoll')
 
 		$stateProvider
 			.state('adminpoll', {
-				url:'/adminpoll',
+				url:'/adminpoll/:room',
 				templateUrl: 'app/modules/adminpoll/adminpoll.html',
 				controller: 'AdminpollCtrl',
 				controllerAs: 'vm'
