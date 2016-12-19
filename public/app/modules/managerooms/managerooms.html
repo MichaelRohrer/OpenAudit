@@ -16,9 +16,9 @@
 						<div class="table-responsive">
 							<form role="form">
 								<div class="form-group">
-									<input ng-model="name" class="form-control" placeholder="Name">
+									<input ng-model="vm.name" class="form-control" placeholder="Name">
 								</div>
-								<button ng-click="vm.create()" type="submit" class="btn btn-primary pull-right">Create</button>
+								<button ng-click="vm.create(vm)" type="submit" class="btn btn-primary pull-right">Create</button>
 							</form>
 						</div>
 					</div>
@@ -55,8 +55,8 @@
 								<td ng-if="index.closed">Closed</td>
 								<td ng-if="!index.closed">Opened</td>
 								<td><button ng-click="vm.open($index)" type="button" class="btn btn-success">Open</button></td>
-								<td><button ng-click="vm.close($index)" type="submit" class="btn btn-warning">Close</button></td>
-								<td><button ng-click="vm.delete($index)" type="button" class="btn btn-danger">Delete</button></td>
+								<td><button ng-click="vm.close($index, vm)" type="submit" class="btn btn-warning">Close</button></td>
+								<td><button ng-click="vm.delete($index, vm)" type="button" class="btn btn-danger">Delete</button></td>
 							</tr>
 							</tbody>
 						</table>

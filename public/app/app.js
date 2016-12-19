@@ -28,7 +28,7 @@
 		'managerooms',
 		'watchrooms',
 		'login',
-		'register',
+		'register'
 	]);
 
 })();

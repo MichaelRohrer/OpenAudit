@@ -3,11 +3,12 @@ function RealtimeService() {
     var socketio;
 
     var usernames = {};
-    var rooms = [];
+    var rooms = ['global'];
 
 
     function setup(io) {
         socketio = io;
+
         socketio.on("connection", function (socket) {
             socket.emit("msg_welcome");
             socketio.emit("msg_newuser");
@@ -37,7 +38,6 @@ function RealtimeService() {
         updateQuestions: updateQuestions,
         updateResult: updateResult
     }
-
 }
 
 module.exports = new RealtimeService();

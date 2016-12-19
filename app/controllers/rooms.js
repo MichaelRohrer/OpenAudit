@@ -31,14 +31,11 @@ router.post('/', function (req, res, next) {
                 return next(err);
             }
         }
-        realtime.notifyObservation(req.body);
         return res.status(201).location('/rooms/' + newRoom._id).end();
     });
 });
 
 router.put('/', function (req, res, next) {
-
-
 
 });
 

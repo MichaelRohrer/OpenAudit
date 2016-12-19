@@ -13,7 +13,7 @@
 		.module('watchrooms')
 		.controller('WatchroomsCtrl', Watchrooms);
 
-	Watchrooms.$inject = ['$http'];
+	Watchrooms.$inject = ['$http', 'WatchroomsService'];
 
 	/*
 	 * recommend
@@ -21,25 +21,14 @@
 	 * and bindable members up top.
 	 */
 
-	function Watchrooms($http) {
+	function Watchrooms($http, WatchroomsService) {
 		/*jshint validthis: true */
 		var vm = this;
 
 		vm.nbRooms = 0;
+		vm.service = WatchroomsService;
 
-
-		$http({
-			method : "GET",
-			url : "/rooms",
-			headers: {
-				'Content-Type': 'application/json',
-				'Bearer': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3aGVyZSI6ImhlcmUiLCJpYXQiOjE0ODE5ODA4MTN9._0TcNxJ4_-ZNQ49Ku1ck0YnPpSnCNwiA2NPzuyNIXdE'
-			}
-		}).then(function mySucces(response) {
-			vm.rooms = response.data;
-		}, function myError(response) {
-			console.log("A problem occurred while loading the rooms");
-		});
+		vm.service.init(vm);
 		
 		vm.join = function() {
 			
