@@ -13,7 +13,7 @@
 		.module('login')
 		.controller('LoginCtrl', Login);
 
-	Login.$inject = [];
+	Login.$inject = ['socketio'];
 
 	/*
 	 * recommend
@@ -21,10 +21,21 @@
 	 * and bindable members up top.
 	 */
 
-	function Login() {
+	function Login(socketio) {
 		/*jshint validthis: true */
 		var vm = this;
 
+		socketio.init();
+
+		var hhh = {};
+
+		hhh.a = "Hello";
+
+		socketio.on("msg_welcome", function () {
+			console.log("received welcome message via angular event system in birdsCtrl.js");
+		});
+
+		socketio.emit('test', hhh, null);
 	}
 
 })();

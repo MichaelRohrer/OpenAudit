@@ -13,7 +13,7 @@ angular.module('activepoll')
 
 		$stateProvider
 			.state('activepoll', {
-				url:'/activepoll',
+				url:'/activepoll/:room',
 				templateUrl: 'app/modules/activepoll/activepoll.html',
 				controller: 'ActivepollCtrl',
 				controllerAs: 'vm'

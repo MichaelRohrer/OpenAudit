@@ -13,7 +13,7 @@
 		.module('watchrooms')
 		.controller('WatchroomsCtrl', Watchrooms);
 
-	Watchrooms.$inject = ['$http', 'WatchroomsService'];
+	Watchrooms.$inject = ['WatchroomsService', '$state', 'socketio'];
 
 	/*
 	 * recommend
@@ -21,7 +21,7 @@
 	 * and bindable members up top.
 	 */
 
-	function Watchrooms($http, WatchroomsService) {
+	function Watchrooms(WatchroomsService, $state, socketio) {
 		/*jshint validthis: true */
 		var vm = this;
 
@@ -29,14 +29,18 @@
 		vm.service = WatchroomsService;
 
 		vm.service.init(vm);
-		
-		vm.join = function() {
-			
+
+		socketio.on('msg_update_room', function (data) {
+			console.log("Room should be updated !");
+			vm.rooms = data;
+		});
+
+		vm.join = function(index) {
+			$state.transitionTo('activepoll', {room: vm.rooms[index].name});
 		};
 
-		vm.follow = function () {
-
+		vm.follow = function (index) {
+			$state.transitionTo('passivepoll', {room: vm.rooms[index].name});
 		};
 	}
-
 })();

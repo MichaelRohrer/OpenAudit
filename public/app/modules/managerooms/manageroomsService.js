@@ -15,9 +15,9 @@
 		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
 		// function Name ($http, someSevide) {...}
 
-		Managerooms.$inject = ['$http', '$rootScope', '$state'];
+		Managerooms.$inject = ['$http', '$rootScope', '$state', 'socketio'];
 
-		function Managerooms ($http, $rootScope, $state) {
+		function Managerooms ($http, $rootScope, $state, socketio) {
 
 			var services = {
 				init: init,
@@ -45,7 +45,16 @@
 			}
 
 			function createRoom(vm){
-				$http({
+
+
+				var data = {};
+				data.name = vm.name;
+				data.owner = $rootScope.username;
+
+				socketio.emit('msg_create_room', data, null);
+				$state.transitionTo('adminpoll', {room: vm.name});
+
+				/*$http({
 					method : "POST",
 					url : "/rooms",
 					headers: {
@@ -58,7 +67,7 @@
 					}
 				}).then(function () {
 					$state.transitionTo('adminpoll', {room: vm.name});
-				});
+				});*/
 			}
 			
 			function closeRoom(index, vm){

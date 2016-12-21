@@ -13,7 +13,7 @@ angular.module('passivepoll')
 
 		$stateProvider
 			.state('passivepoll', {
-				url:'/passivepoll',
+				url:'/passivepoll/:room',
 				templateUrl: 'app/modules/passivepoll/passivepoll.html',
 				controller: 'PassivepollCtrl',
 				controllerAs: 'vm'
