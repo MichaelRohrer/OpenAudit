@@ -36,10 +36,10 @@
 		vm.create = ManageroomsService.create;
 		vm.delete = ManageroomsService.delete;
 
+
 		vm.open = function (index) {
 			$state.transitionTo('adminpoll', {room: vm.rooms[index].name});
 		};
-
 
 		socketio.on('msg_update_managed_rooms', function (data) {
 			console.log("MSG ROOM received!");

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Room = mongoose.model('Room');
+var Question = mongoose.model('Question');
 
 function RealtimeService() {
 
@@ -121,6 +122,31 @@ function RealtimeService() {
                         }
                     });
                 }
+            });
+
+
+            socket.on('msg_add_question', function (data) {
+
+                Question.find({roomId: data.room}).count(function(err, count){
+
+                    var newQuestion = new Question({
+                        qId: count,
+                        roomId: data.room,
+                        question: data.question,
+                        possibilities: data.possibilities,
+                        answers: data.answers
+                    });
+
+                    newQuestion.save(function (err) {
+
+                        var query = Question.find({qId: count, roomId: data.room})
+                            .select('qId question possibilities answers -_id');
+
+                        query.exec(function (err, question) {
+                            socketio.emit('msg_update_questions', question);
+                        });
+                    });
+                });
             });
         });
     }

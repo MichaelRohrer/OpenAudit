@@ -20,7 +20,6 @@
 		function Managerooms ($http, $rootScope, $state, socketio) {
 
 			var services = {
-				socket: socketio,
 				init: init,
 				create: createRoom,
 				close: closeRoom,

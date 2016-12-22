@@ -13,7 +13,7 @@
 		.module('adminpoll')
 		.controller('AdminpollCtrl', Adminpoll);
 
-	Adminpoll.$inject = ['$scope', '$http', '$stateParams', '$rootScope'];
+	Adminpoll.$inject = ['$scope', '$http', '$stateParams', '$rootScope', 'AdminpollService', 'socketio'];
 
 	/*
 	 * recommend
@@ -21,27 +21,42 @@
 	 * and bindable members up top.
 	 */
 
-	function Adminpoll($scope, $http, $stateParams, $rootScope) {
+	function Adminpoll($scope, $http, $stateParams, $rootScope, AdminpollService, socketio) {
 
 		var vm = this;
 
-		vm.showme = false;
-
+        //Form field
         var fields = [{name:'Answer 1', val:''}, {name:'Answer 2', val:''}];
-
+        vm.showme = false;
         $scope.formData = {};
         $scope.formData.question;
         $scope.formData.dynamicFields = fields;
 
-        vm.showme1 = false;
+
+        //Question field
+        var questionsData = [];
+        $scope.questionsData = questionsData;
+
+
+        /*vm.showme1 = false;
 		vm.data = [70, 20, 10];
-		vm.labels = ["Yes", "No", "Maybe"];
+		vm.labels = ["Yes", "No", "Maybe"];*/
 
 
+        vm.service = AdminpollService;
         console.log($stateParams.room);
+        vm.service.init($stateParams.room);
+
+        vm.submit = AdminpollService.submit;
+
+        socketio.on('msg_update_questions', function (data) {
+            data[0].total = 1;
+            data[0].showme = true;
+            $scope.questionsData.push(data[0]);
+        });
 
 
-        vm.submit = function (formData) {
+        /*vm.submit = function (formData) {
 
             var results = [];
             var possibilities = [];
@@ -49,6 +64,8 @@
                 results.push(0);
                 possibilities.push(formData.dynamicFields[i].val);
             }
+
+
 
             $http({
                 method : "POST",
@@ -70,7 +87,7 @@
                     console.log("Error")
                 }
             });
-        };
+        };*/
 
         vm.addRow = function() {
             var newItemNum = $scope.formData.dynamicFields.length+1;
