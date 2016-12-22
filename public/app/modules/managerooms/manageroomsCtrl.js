@@ -13,7 +13,7 @@
 		.module('managerooms')
 		.controller('ManageroomsCtrl', Managerooms);
 
-	Managerooms.$inject = ['$state', '$rootScope', 'ManageroomsService'];
+	Managerooms.$inject = ['$state', '$scope', '$rootScope', 'ManageroomsService', 'socketio'];
 
 	/*
 	 * recommend
@@ -21,7 +21,7 @@
 	 * and bindable members up top.
 	 */
 
-	function Managerooms($state, $rootScope, ManageroomsService) {
+	function Managerooms($state, $scope, $rootScope, ManageroomsService, socketio) {
 
 		var vm = this;
 
@@ -30,7 +30,7 @@
 		$rootScope.username = 'mike';
 		vm.username = $rootScope.username;
 
-		ManageroomsService.init(vm);
+		ManageroomsService.init();
 
 		vm.close = ManageroomsService.close;
 		vm.create = ManageroomsService.create;
@@ -40,5 +40,11 @@
 			$state.transitionTo('adminpoll', {room: vm.rooms[index].name});
 		};
 
+
+		socketio.on('msg_update_managed_rooms', function (data) {
+			console.log("MSG ROOM received!");
+			console.log(data);
+			vm.rooms = data;
+		});
 	}
 })();

@@ -20,6 +20,7 @@
 		function Managerooms ($http, $rootScope, $state, socketio) {
 
 			var services = {
+				socket: socketio,
 				init: init,
 				create: createRoom,
 				close: closeRoom,
@@ -29,8 +30,13 @@
 			return services;
 
 
-			function init(vm) {
-				$http({
+			function init() {
+
+				var data = {};
+				data.owner = $rootScope.username;
+				socketio.emit('msg_get_room_from_owner', data, null);
+
+				/*$http({
 					method : "GET",
 					url : "/rooms",
 					headers: {
@@ -41,7 +47,7 @@
 					vm.rooms = response.data;
 				}, function myError(response) {
 					console.log("A problem occurred while loading the rooms");
-				});
+				});*/
 			}
 
 			function createRoom(vm){
@@ -71,7 +77,15 @@
 			}
 			
 			function closeRoom(index, vm){
-				$http({
+
+				var data = {};
+				data.status = 1;
+				data.room = vm.rooms[index].name;
+				data.owner = $rootScope.username;
+
+				socketio.emit('msg_close_room', data, null);
+
+				/*$http({
 					method : "PUT",
 					url : "/rooms" + "/" + vm.rooms[index].name,
 					headers: {
@@ -83,11 +97,20 @@
 					}
 				}).then(function () {
 					console.log("Status updated!");
-				});
+				});*/
 			}
 			
 			function deleteRoom(index, vm) {
-				$http({
+
+				var data = {};
+				data.room = vm.rooms[index].name;
+				data.owner = $rootScope.username;
+
+				console.log(data.room + " from " + data.owner);
+
+				socketio.emit('msg_delete_room', data, null);
+
+				/*$http({
 					method : "DELETE",
 					url : "/rooms" + "/" + vm.rooms[index].name,
 					headers: {
@@ -96,7 +119,7 @@
 					}
 				}).then(function () {
 					console.log("Room deleted!");
-				});
+				});*/
 			}
 		}
 })();
