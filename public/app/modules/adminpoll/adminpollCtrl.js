@@ -56,6 +56,11 @@
         });
 
 
+        socketio.on('msg_update_question_results', function (data) {
+            console.log("Answer updated!");
+        });
+
+
         /*vm.submit = function (formData) {
 
             var results = [];

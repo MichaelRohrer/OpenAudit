@@ -13,7 +13,7 @@
 		.module('activepoll')
 		.controller('ActivepollCtrl', Activepoll);
 
-	Activepoll.$inject = [];
+	Activepoll.$inject = ['$scope', '$stateParams', 'socketio'];
 
 	/*
 	 * recommend
@@ -21,14 +21,36 @@
 	 * and bindable members up top.
 	 */
 
-	function Activepoll() {
-		/*jshint validthis: true */
+	function Activepoll($scope, $stateParams, socketio) {
+
 		var vm = this;
 
-		vm.showme = false;
+		//Question field
+		var questionsData = [];
+		$scope.questionsData = questionsData;
 
-		vm.labels = ["Yes", "No", "Maybe"];
-		vm.data = [70, 20, 10];
+		socketio.on('msg_update_questions', function (data) {
+			data[0].total = 1;
+			data[0].showme = true;
+			data[0].answer = null;
+			$scope.questionsData.push(data[0]);
+		});
+
+		socketio.on('msg_update_question_results', function (data) {
+			console.log("Result updated!");
+			console.log(data);
+		});
+
+		vm.answer = function (question, index) {
+			question.answer = question.possibilities[index];
+
+			var data = {};
+			data.roomId = $stateParams.room;
+			data.qId = question.qId;
+			data.answerIndex = index;
+
+			socketio.emit('msg_answer_question', data, null);
+			console.log('Answer sent!');
+		}
 	}
-
 })();

@@ -18,12 +18,6 @@ function RealtimeService() {
             socket.emit("msg_welcome");
             socketio.emit("msg_welcome");
 
-
-            socket.on("test", function (data) {
-                console.log("This is a test and it has succeed !!!!!!!!!!!!!!!!! ");
-                console.log(data.a);
-            });
-
             socket.on('msg_get_room_from_owner', function (data) {
 
                 var query = Room.find({owner: data.owner}).select('name owner closed -_id');
@@ -48,7 +42,7 @@ function RealtimeService() {
                             console.log("ValidationError");
                         }
                     }
-                    else{
+                    else {
                         console.log("Room: " + data.name + " from: " + data.owner + " created!");
 
                         var query = Room.find({}).select('name owner closed -_id');
@@ -57,7 +51,7 @@ function RealtimeService() {
                             if (err) {
                                 console.log("Error creating the room")
                             }
-                            else{
+                            else {
                                 console.log("Success creating the room");
                                 socketio.emit('msg_update_rooms', rooms);
                             }
@@ -68,10 +62,10 @@ function RealtimeService() {
 
 
             socket.on('msg_close_room', function (data) {
-                if(data.room && data.owner){
+                if (data.room && data.owner) {
                     Room.findOneAndUpdate(
                         {name: data.room},
-                        {closed: data.status}, function(err) {
+                        {closed: data.status}, function (err) {
                             if (err) {
                                 console.log("Error - > Room: " + data.room + " not closed.");
                             }
@@ -99,21 +93,21 @@ function RealtimeService() {
 
 
             socket.on('msg_delete_room', function (data) {
-                if(data.room && data.owner){
-                    Room.findOneAndRemove({name: data.room}, function(err) {
-                        if(err) {
+                if (data.room && data.owner) {
+                    Room.findOneAndRemove({name: data.room}, function (err) {
+                        if (err) {
                             console.log("Error - > Room: " + data.room + " not removed.");
                         }
-                        else{
+                        else {
                             console.log("Success - > Room: " + data.room + " removed.");
 
-                            var query = Room.find({owner : data.owner}).select('name owner closed -_id');
+                            var query = Room.find({owner: data.owner}).select('name owner closed -_id');
 
                             query.exec(function (err, rooms) {
                                 if (err) {
                                     console.log("Error deleting rooms")
                                 }
-                                else{
+                                else {
                                     console.log("Success deleting rooms");
                                     socket.emit('msg_update_managed_rooms', rooms);
                                     socketio.emit('msg_update_rooms', rooms);
@@ -127,7 +121,7 @@ function RealtimeService() {
 
             socket.on('msg_add_question', function (data) {
 
-                Question.find({roomId: data.room}).count(function(err, count){
+                Question.find({roomId: data.room}).count(function (err, count) {
 
                     var newQuestion = new Question({
                         qId: count,
@@ -148,31 +142,35 @@ function RealtimeService() {
                     });
                 });
             });
+
+
+            socket.on('msg_answer_question', function (data) {
+
+                var query = Question.find({roomId: data.roomId, qId: data.qId}).select('answers -_id');
+
+                query.exec(function (err, res) {
+                    if (err) {
+                        console.log("Error recording answer.");
+                    }
+                    else {
+                        console.log("Success recording answer.");
+                        res[0].answers[data.answerIndex] = res[0].answers[data.answerIndex] + 1;
+
+                        Question.findOneAndUpdate({
+                            roomId: data.roomId,
+                            qId: data.qId
+                        }, {answers: res[0].answers}, function (err) {
+                            socketio.emit('msg_update_question_results.', res[0]);
+                            console.log("Transmitting data change.");
+                        });
+                    }
+                });
+            });
         });
-    }
-    
-    function updateRooms() {
-        //do a refresh
-    }
-
-    function updateQuestions(room, data) {
-
-    }
-
-    function updateResult(room, question, data) {
-
-    }
- 
-    function notifyObservation(observation) {
-        socketio.emit("msg_observation", observation);
     }
 
     return {
-        setup: setup,
-        notifyObservation : notifyObservation,
-        updateRooms: updateRooms,
-        updateQuestions: updateQuestions,
-        updateResult: updateResult
+        setup: setup
     }
 }
 
