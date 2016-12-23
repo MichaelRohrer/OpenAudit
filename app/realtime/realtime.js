@@ -118,6 +118,15 @@ function RealtimeService() {
                 }
             });
 
+            socket.on('msg_get_questions', function (data) {
+
+                var query = Question.find({roomId: data.room})
+                    .select('qId question possibilities answers -_id');
+
+                query.exec(function (err, questions) {
+                    socketio.emit('msg_update_questions', questions);
+                });
+            });
 
             socket.on('msg_add_question', function (data) {
 
@@ -137,7 +146,7 @@ function RealtimeService() {
                             .select('qId question possibilities answers -_id');
 
                         query.exec(function (err, question) {
-                            socketio.emit('msg_update_questions', question);
+                            socketio.emit('msg_update_question', question);
                         });
                     });
                 });
@@ -160,8 +169,8 @@ function RealtimeService() {
                             roomId: data.roomId,
                             qId: data.qId
                         }, {answers: res[0].answers}, function (err) {
-                            socketio.emit('msg_update_question_results.', res[0]);
                             console.log("Transmitting data change.");
+                            socketio.emit('msg_update_question_results.', res[0]);
                         });
                     }
                 });

@@ -28,9 +28,9 @@
 
 			function init() {
 				var data = {};
-				data.room = null;
+				data.room = $stateParams.room;
 				data.owner = $rootScope.username;
-				socketio.emit('msg_get_room_from_owner', data, null);
+				socketio.emit('msg_get_questions', data, null);
 			}
 
 			function submit(formData, vm) {

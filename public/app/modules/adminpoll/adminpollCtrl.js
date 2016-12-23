@@ -44,17 +44,30 @@
 
 
         vm.service = AdminpollService;
-        console.log($stateParams.room);
-        vm.service.init($stateParams.room);
+        vm.service.init();
 
         vm.submit = AdminpollService.submit;
 
-        socketio.on('msg_update_questions', function (data) {
+        socketio.on('msg_update_question', function (data) {
             data[0].total = 1;
             data[0].showme = true;
             $scope.questionsData.push(data[0]);
         });
 
+        socketio.on('msg_update_questions', function (data) {
+            $scope.questionsData = [];
+            for(var i = 0; i < data.length; i++){
+
+                var total = 0;
+                for(var j = 0; j < data[i].answers.length; j++){
+                    total += data[i].answers[j];
+                }
+
+                data[i].total = total >= 1 ? total : 1;
+                data[i].showme = true;
+                $scope.questionsData.push(data[i]);
+            }
+        });
 
         socketio.on('msg_update_question_results', function (data) {
             console.log("Answer updated!");
