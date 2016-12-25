@@ -7,7 +7,7 @@ function RealtimeService() {
     var socketio;
 
     var usernames = {};
-    var rooms = ['global'];
+    var rooms = [];
 
 
     function setup(io) {
@@ -33,6 +33,16 @@ function RealtimeService() {
                 });
             });
 
+            socket.on('msg_join_room', function (data) {
+                socket.join(data.room);
+                socket.emit('msg_join_room');
+            });
+
+            socket.on('msg_leave_room', function (data) {
+                socket.join(data.room);
+                socket.emit('msg_leave_room');
+            });
+
             socket.on('msg_create_room', function (data) {
                 var newRoom = new Room(data);
                 newRoom.save(function (err, doc, n) {
@@ -43,17 +53,16 @@ function RealtimeService() {
                         }
                     }
                     else {
-                        console.log("Room: " + data.name + " from: " + data.owner + " created!");
-
                         var query = Room.find({}).select('name owner closed -_id');
-
                         query.exec(function (err, rooms) {
                             if (err) {
                                 console.log("Error creating the room")
                             }
                             else {
-                                console.log("Success creating the room");
+                                socket.join(data.name);
+                                socket.emit('msg_join_room');
                                 socketio.emit('msg_update_rooms', rooms);
+                                console.log("Room: " + data.name + " from: " + data.owner + " created!");
                             }
                         });
                     }
@@ -124,7 +133,7 @@ function RealtimeService() {
                     .select('qId question possibilities answers -_id');
 
                 query.exec(function (err, questions) {
-                    socketio.emit('msg_update_questions', questions);
+                    socket.emit('msg_update_questions', questions);
                 });
             });
 
@@ -146,7 +155,7 @@ function RealtimeService() {
                             .select('qId question possibilities answers -_id');
 
                         query.exec(function (err, question) {
-                            socketio.emit('msg_update_question', question);
+                            socketio.to(data.room).emit('msg_update_question', question);
                         });
                     });
                 });
@@ -170,7 +179,11 @@ function RealtimeService() {
                             qId: data.qId
                         }, {answers: res[0].answers}, function (err) {
                             console.log("Transmitting data change.");
-                            socketio.emit('msg_update_question_results.', res[0]);
+
+                            var updateData = {};
+                            updateData.result = res[0];
+                            updateData.index = data.qId;
+                            socketio.to(data.roomId).emit('msg_update_question_results', updateData);
                         });
                     }
                 });

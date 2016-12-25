@@ -16,7 +16,8 @@ angular.module('register')
 				url:'/register',
 				templateUrl: 'app/modules/register/register.html',
 				controller: 'RegisterCtrl',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				authenticate: false
 			});
 
 

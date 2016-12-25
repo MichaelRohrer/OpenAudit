@@ -16,7 +16,8 @@ angular.module('adminpoll')
 				url:'/adminpoll/:room',
 				templateUrl: 'app/modules/adminpoll/adminpoll.html',
 				controller: 'AdminpollCtrl',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				authenticate: true
 			});
 
 

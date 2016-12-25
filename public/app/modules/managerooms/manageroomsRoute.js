@@ -16,7 +16,8 @@ angular.module('managerooms')
 				url:'/managerooms',
 				templateUrl: 'app/modules/managerooms/managerooms.html',
 				controller: 'ManageroomsCtrl',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				authenticate: true
 			});
 
 

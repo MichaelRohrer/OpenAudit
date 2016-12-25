@@ -16,7 +16,8 @@ angular.module('watchrooms')
 				url:'/watchrooms',
 				templateUrl: 'app/modules/watchrooms/watchrooms.html',
 				controller: 'WatchroomsCtrl',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				authenticate: true
 			});
 
 

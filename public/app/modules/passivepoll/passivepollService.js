@@ -15,10 +15,22 @@
 		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
 		// function Name ($http, someSevide) {...}
 
-		Passivepoll.$inject = ['$http'];
+		Passivepoll.$inject = ['$rootScope','$stateParams', 'socketio'];
 
-		function Passivepoll ($http) {
+		function Passivepoll ($rootScope, $stateParams, socketio) {
 
+			var services = {
+				init: init
+			};
+
+			return services;
+
+			function init() {
+				var data = {};
+				data.room = $stateParams.room;
+				data.owner = $rootScope.username;
+				socketio.emit('msg_get_questions', data, null);
+			}
 		}
 
 })();

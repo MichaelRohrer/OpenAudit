@@ -13,7 +13,7 @@
 		.module('register')
 		.controller('RegisterCtrl', Register);
 
-	Register.$inject = [];
+	Register.$inject = ['RegisterService'];
 
 	/*
 	 * recommend
@@ -21,10 +21,9 @@
 	 * and bindable members up top.
 	 */
 
-	function Register() {
+	function Register(RegisterService) {
 		/*jshint validthis: true */
 		var vm = this;
-
+		vm.submit = RegisterService.register;
 	}
-
 })();

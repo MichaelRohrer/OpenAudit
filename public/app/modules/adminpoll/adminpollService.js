@@ -37,7 +37,7 @@
 				var results = [];
 				var possibilities = [];
 				for(var i = 0; i < formData.dynamicFields.length; ++i){
-					results.push(10);
+					results.push(0);
 					possibilities.push(formData.dynamicFields[i].val);
 				}
 

@@ -16,7 +16,8 @@ angular.module('activepoll')
 				url:'/activepoll/:room',
 				templateUrl: 'app/modules/activepoll/activepoll.html',
 				controller: 'ActivepollCtrl',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				authenticate: true
 			});
 
 

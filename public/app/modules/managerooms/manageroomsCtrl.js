@@ -25,6 +25,16 @@
 
 		var vm = this;
 
+		if(!$rootScope.isLogged){
+			$state.transitionTo('login');
+		}
+
+		if($rootScope.currentRoom != null){
+			var data = {};
+			data.room = $rootScope.currentRoom;
+			socketio.emit('msg_leave_room', data);
+		}
+
 		vm.showme = false;
 
 		$rootScope.username = 'mike';
@@ -38,6 +48,11 @@
 
 
 		vm.open = function (index) {
+
+			var data = {};
+			data.room = vm.rooms[index].name;
+
+			socketio.emit('msg_join_room', data);
 			$state.transitionTo('adminpoll', {room: vm.rooms[index].name});
 		};
 
@@ -46,5 +61,9 @@
 			console.log(data);
 			vm.rooms = data;
 		});
+
+		socketio.on('msg_leave_room', function () {
+			console.log("Room: " + $rootScope.currentRoom + " left.");
+		})
 	}
 })();

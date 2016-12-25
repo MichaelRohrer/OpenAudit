@@ -13,7 +13,7 @@
 		.module('adminpoll')
 		.controller('AdminpollCtrl', Adminpoll);
 
-	Adminpoll.$inject = ['$scope', '$http', '$stateParams', '$rootScope', 'AdminpollService', 'socketio'];
+	Adminpoll.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'AdminpollService', 'socketio'];
 
 	/*
 	 * recommend
@@ -21,9 +21,15 @@
 	 * and bindable members up top.
 	 */
 
-	function Adminpoll($scope, $http, $stateParams, $rootScope, AdminpollService, socketio) {
+	function Adminpoll($scope, $state, $stateParams, $rootScope, AdminpollService, socketio) {
 
 		var vm = this;
+
+        if(!$rootScope.isLogged){
+            $state.transitionTo('login');
+        }
+
+        $rootScope.currentRoom = $stateParams.room;
 
         //Form field
         var fields = [{name:'Answer 1', val:''}, {name:'Answer 2', val:''}];
@@ -70,7 +76,23 @@
         });
 
         socketio.on('msg_update_question_results', function (data) {
-            console.log("Answer updated!");
+            console.log(data);
+            console.log($scope.questionsData[data.index].answers);
+
+            var total = 0;
+            for(var i = 0; i < data.result.answers.length; i++){
+                total += data.result.answers[i];
+            }
+
+            $scope.questionsData[data.index].total = total >= 1 ? total : 1;
+
+            $scope.questionsData[data.index].answers = data.result.answers;
+            console.log($scope.questionsData[data.index].answers);
+            console.log("Result updated!");
+        });
+
+        socketio.on('msg_join_room', function () {
+            console.log("Room: " + $stateParams.room + " joined.")
         });
 
 

@@ -13,7 +13,7 @@
 		.module('activepoll')
 		.controller('ActivepollCtrl', Activepoll);
 
-	Activepoll.$inject = ['$scope', '$stateParams', 'socketio', 'ActivepollService'];
+	Activepoll.$inject = ['$scope', '$rootScope', '$stateParams', '$state', 'socketio', 'ActivepollService'];
 
 	/*
 	 * recommend
@@ -21,9 +21,15 @@
 	 * and bindable members up top.
 	 */
 
-	function Activepoll($scope, $stateParams, socketio, ActivepollService) {
+	function Activepoll($scope, $rootScope, $stateParams, $state, socketio, ActivepollService) {
 
 		var vm = this;
+
+		if(!$rootScope.isLogged){
+			$state.transitionTo('login');
+		}
+
+		$rootScope.currentRoom = $stateParams.room;
 
 		vm.service = ActivepollService;
 		vm.service.init();
@@ -33,7 +39,6 @@
 		$scope.questionsData = questionsData;
 
 		socketio.on('msg_update_question', function (data) {
-
 			data[0].total = 1;
 			data[0].showme = true;
 			data[0].answer = null;
@@ -57,8 +62,22 @@
 		});
 
 		socketio.on('msg_update_question_results', function (data) {
-			console.log("Result updated!");
 			console.log(data);
+			console.log($scope.questionsData[data.index].answers);
+
+			var total = 0;
+			for(var i = 0; i < data.result.answers.length; i++){
+				total += data.result.answers[i];
+			}
+
+			$scope.questionsData[data.index].total = total >= 1 ? total : 1;
+			$scope.questionsData[data.index].answers = data.result.answers;
+			console.log($scope.questionsData[data.index].answers);
+			console.log("Result updated!");
+		});
+
+		socketio.on('msg_join_room', function () {
+			console.log("Room: " + $stateParams.room + " joined.")
 		});
 
 		vm.init = function () {

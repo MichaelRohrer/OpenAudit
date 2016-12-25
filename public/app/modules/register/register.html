@@ -10,19 +10,16 @@
 			<form role="form">
 				<fieldset>
 					<div class="form-group">
-						<input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+						<input class="form-control" placeholder="Username" name="username" type="text" ng-model="vm.username">
 					</div>
 					<div class="form-group">
-						<input class="form-control" placeholder="E-Mail" name="email" type="email" autofocus>
+						<input class="form-control" placeholder="Password" name="password" type="password" ng-model="vm.password">
 					</div>
 					<div class="form-group">
-						<input class="form-control" placeholder="Password" name="password" type="password" value="">
-					</div>
-					<div class="form-group">
-						<input class="form-control" placeholder="Password" name="password1" type="password" value="">
+						<input class="form-control" placeholder="Password" name="password1" type="password" ng-model="vm.password1">
 					</div>
 					<!-- Change this to a button or input when using this as a form -->
-					<a href="index.html" class="btn btn-lg btn-success btn-block">Register</a>
+					<a class="btn btn-lg btn-success btn-block" ng-click="vm.submit(vm.username, vm.password, vm.password1)">Register</a>
 				</fieldset>
 			</form>
 		</div>
