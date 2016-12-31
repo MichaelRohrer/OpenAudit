@@ -25,12 +25,17 @@
 									<p><h4>{{question.question}}</h4></p>
 								</div>
 								<form>
-									<div class="form-group1">
+									<div ng-if="question.answer === null" class="form-group1">
 										<div class="list-group" ng-repeat="answer in question.possibilities track by $index">
 											<button type="button" class="list-group-item" ng-click="vm.answer(question, $index)">{{answer}}</button>
 										</div>
 									</div>
 								</form>
+								<div ng-if="question.answer != null">
+									<div class="alert alert-info">
+										<strong>Your answer: </strong> {{question.answer}}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
