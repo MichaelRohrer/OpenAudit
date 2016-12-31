@@ -1,11 +1,25 @@
 <div class="login-container">
 	<div class="login-panel panel panel-default">
+
 		<div class="panel-heading">
 			<h3 class="panel-title">Please Register</h3>
 		</div>
 		<div class="panel-body">
 
-			<a ui-sref="login">Already registered click here</a>
+			<div class="row">
+				<div class="col-md-12">
+					<!-- ng-if -->
+					<div ng-if="vm.success == true" class="alert alert-success">
+						<strong>Success</strong> {{vm.msg}}
+					</div>
+					<div ng-if="vm.success == false" class="alert alert-danger">
+						<strong>Error</strong> {{vm.msg}}
+					</div>
+				</div>
+			</div>
+
+			<a class="btn btn-lg btn-primary btn-block" ng-click="vm.login()">Back to login</a>
+			<br/>
 
 			<form role="form">
 				<fieldset>
@@ -19,9 +33,11 @@
 						<input class="form-control" placeholder="Password" name="password1" type="password" ng-model="vm.password1">
 					</div>
 					<!-- Change this to a button or input when using this as a form -->
-					<a class="btn btn-lg btn-success btn-block" ng-click="vm.submit(vm.username, vm.password, vm.password1)">Register</a>
+					<a class="btn btn-lg btn-success btn-block" ng-click="vm.submit(vm)">Register</a>
 				</fieldset>
 			</form>
 		</div>
 	</div>
 </div>
+
+

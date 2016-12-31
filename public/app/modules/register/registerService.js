@@ -25,20 +25,26 @@
 
 			return services;
 
-			function register(uname, pwd1, pwd2) {
+			function register(vm) {
 
-				if(pwd1 === pwd2){
+				if(vm.password === vm.password1){
 					$http({
 						method : "POST",
 						url : "/register",
 						headers: {'Content-Type': 'application/json'},
 						data: {
-							username: uname,
-							password: pwd1
+							username: vm.username,
+							password: vm.password
 						}
 					}).then(function (response) {
-						console.log(response);
-						$state.transitionTo('login');
+						if(response.status == 201){
+							vm.success = true;
+							vm.msg = " - The user has been created!";
+							$state.transitionTo('login');
+						}
+					}, function (err) {
+						vm.success = false;
+						vm.msg = " - The user already exists!";
 					});
 				}
 			}

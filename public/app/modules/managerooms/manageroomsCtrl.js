@@ -36,8 +36,6 @@
 		}
 
 		vm.showme = false;
-
-		$rootScope.username = 'mike';
 		vm.username = $rootScope.username;
 
 		ManageroomsService.init();

@@ -13,7 +13,7 @@
 		.module('register')
 		.controller('RegisterCtrl', Register);
 
-	Register.$inject = ['RegisterService'];
+	Register.$inject = ['$state', 'RegisterService', 'socketio'];
 
 	/*
 	 * recommend
@@ -21,9 +21,12 @@
 	 * and bindable members up top.
 	 */
 
-	function Register(RegisterService) {
+	function Register($state, RegisterService, socketio) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.submit = RegisterService.register;
+		vm.login = function () {
+			$state.transitionTo('login');
+		}
 	}
 })();

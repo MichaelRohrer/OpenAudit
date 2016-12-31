@@ -13,7 +13,7 @@
 		.module('login')
 		.controller('LoginCtrl', Login);
 
-	Login.$inject = ['socketio', '$rootScope', 'LoginService'];
+	Login.$inject = ['$state', '$rootScope', 'LoginService', 'socketio'];
 
 	/*
 	 * recommend
@@ -21,13 +21,18 @@
 	 * and bindable members up top.
 	 */
 
-	function Login(socketio, $rootScope, LoginService) {
+	function Login($state, $rootScope, LoginService, socketio) {
 		/*jshint validthis: true */
 		var vm = this;
 		$rootScope.isLogged = false;
 
 		socketio.init();
+
 		vm.submit = LoginService.login;
+
+		vm.register = function () {
+			$state.transitionTo('register');
+		}
 	}
 
 })();
