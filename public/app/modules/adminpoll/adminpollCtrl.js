@@ -43,12 +43,6 @@
         var questionsData = [];
         $scope.questionsData = questionsData;
 
-
-        /*vm.showme1 = false;
-		vm.data = [70, 20, 10];
-		vm.labels = ["Yes", "No", "Maybe"];*/
-
-
         vm.service = AdminpollService;
         vm.service.init();
 
@@ -95,39 +89,10 @@
             console.log("Room: " + $stateParams.room + " joined.")
         });
 
-
-        /*vm.submit = function (formData) {
-
-            var results = [];
-            var possibilities = [];
-            for(var i = 0; i < formData.dynamicFields.length; ++i){
-                results.push(0);
-                possibilities.push(formData.dynamicFields[i].val);
-            }
-
-
-
-            $http({
-                method : "POST",
-                url : "/rooms/" + $stateParams.room,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Bearer': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3aGVyZSI6ImhlcmUiLCJpYXQiOjE0ODE5ODA4MTN9._0TcNxJ4_-ZNQ49Ku1ck0YnPpSnCNwiA2NPzuyNIXdE'
-                },
-                data: {
-                    question : formData.question,
-                    possibilities : possibilities,
-                    answers : results
-                }
-            }).then(function (res) {
-                if(res.status == 201){
-                    console.log("Success");
-                }
-                else{
-                    console.log("Error")
-                }
-            });
-        };*/
+        socketio.on('msg_status', function (data) {
+            vm.success = data.status == 'ok';
+            vm.msg = ' - ' + data.msg;
+        });
 
         vm.addRow = function() {
             var newItemNum = $scope.formData.dynamicFields.length+1;

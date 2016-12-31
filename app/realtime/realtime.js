@@ -15,9 +15,6 @@ function RealtimeService() {
 
         socketio.on("connection", function (socket) {
 
-            socket.emit("msg_welcome");
-            socketio.emit("msg_welcome");
-
             socket.on('msg_get_room_from_owner', function (data) {
 
                 var query = Room.find({owner: data.owner}).select('name owner closed -_id');
@@ -190,13 +187,24 @@ function RealtimeService() {
                     });
 
                     newQuestion.save(function (err) {
+                        var response = {};
+                        if(err){
+                            response.status = 'nok';
+                            response.msg = "A problem occurred adding the question to the room";
+                            socket.emit('msg_status', response);
+                        }
+                        else{
+                            var query = Question.find({qId: count, roomId: data.room})
+                                .select('qId question possibilities answers -_id');
 
-                        var query = Question.find({qId: count, roomId: data.room})
-                            .select('qId question possibilities answers -_id');
+                            query.exec(function (err, question) {
+                                socketio.to(data.room).emit('msg_update_question', question);
 
-                        query.exec(function (err, question) {
-                            socketio.to(data.room).emit('msg_update_question', question);
-                        });
+                                response.status = 'ok';
+                                response.msg = "The question has been added to the room";
+                                socket.emit('msg_status', response);
+                            });
+                        }
                     });
                 });
             });
