@@ -57,7 +57,6 @@
 				data.owner = $rootScope.username;
 
 				socketio.emit('msg_create_room', data, null);
-				$state.transitionTo('adminpoll', {room: vm.name});
 
 				/*$http({
 					method : "POST",
