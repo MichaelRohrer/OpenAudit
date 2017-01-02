@@ -69,9 +69,6 @@
                 data[i].total = total >= 1 ? total : 1;
                 data[i].showme = true;
 
-                console.log("Status: " + data[i].status);
-                console.log("Index: " + data[i].correctAnswerIndex);
-
                 $scope.questionsData.push(data[i]);
             }
         });

@@ -80,6 +80,10 @@
 			console.log("Room: " + $stateParams.room + " joined.")
 		});
 
+		socketio.on('msg_close_question', function (data) {
+			$scope.questionsData[data.qId].status = true;
+		});
+
 		vm.init = function () {
 			var data = {};
 			data.room = $stateParams.room;

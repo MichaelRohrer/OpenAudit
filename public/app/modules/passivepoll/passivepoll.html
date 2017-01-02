@@ -23,39 +23,41 @@
 							<div class="table-responsive">
 								<p><h4>{{question.question}}</h4></p>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+							<hr>
 
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-4">
-								<label>Chart</label>
-								<canvas id="doughnut" class="chart chart-doughnut"
-										chart-data="question.answers" chart-labels="question.possibilities">
-								</canvas>
+							<div ng-if="question.status == true">
+								<div class="alert alert-success">
+									<strong>Solution </strong>- {{question.possibilities[question.correctAnswerIndex]}}
+								</div>
+								<hr>
 							</div>
-							<div class="col-md-8">
-								<div ng-repeat="answer in question.possibilities track by $index">
-									<label>{{answer}}</label>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" aria-valuenow="{{question.answers[$index]}}"
-											 aria-valuemin="0" aria-valuemax="100" style="width:{{(question.answers[$index]/question.total)*100}}%">
-											{{question.answers[$index]}}
+
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-4">
+										<label>Chart</label>
+										<canvas id="doughnut" class="chart chart-doughnut"
+												chart-data="question.answers" chart-labels="question.possibilities">
+										</canvas>
+									</div>
+									<div class="col-md-8">
+										<div ng-repeat="answer in question.possibilities track by $index">
+											<label>{{answer}}</label>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" aria-valuenow="{{question.answers[$index]}}"
+													 aria-valuemin="0" aria-valuemax="100" style="width:{{(question.answers[$index]/question.total)*100}}%">
+													{{question.answers[$index]}}
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </div>
