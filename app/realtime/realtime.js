@@ -167,7 +167,7 @@ function RealtimeService() {
             socket.on('msg_get_questions', function (data) {
 
                 var query = Question.find({roomId: data.room})
-                    .select('qId question possibilities answers -_id');
+                    .select('qId question possibilities answers correctAnswerIndex status -_id');
 
                 query.exec(function (err, questions) {
                     socket.emit('msg_update_questions', questions);
@@ -183,7 +183,8 @@ function RealtimeService() {
                         roomId: data.room,
                         question: data.question,
                         possibilities: data.possibilities,
-                        answers: data.answers
+                        answers: data.answers,
+                        correctAnswerIndex: data.correctAnswerIndex
                     });
 
                     newQuestion.save(function (err) {
@@ -195,7 +196,7 @@ function RealtimeService() {
                         }
                         else{
                             var query = Question.find({qId: count, roomId: data.room})
-                                .select('qId question possibilities answers -_id');
+                                .select('qId question possibilities answers correctAnswerIndex status -_id');
 
                             query.exec(function (err, question) {
                                 socketio.to(data.room).emit('msg_update_question', question);
@@ -235,6 +236,25 @@ function RealtimeService() {
                         });
                     }
                 });
+            });
+
+            socket.on('msg_close_question', function (data) {
+
+                console.log(data.roomId);
+                console.log(data.qId);
+
+                Question.findOneAndUpdate(
+                    {
+                        roomId: data.roomId,
+                        qId: data.qId
+                    },
+                    {status: true}, function (err) {
+                        if(err){
+                            console.log(err);
+                        }
+                        socketio.to(data.roomId).emit('msg_close_question', data);
+                    }
+                );
             });
         });
     }

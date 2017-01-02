@@ -32,10 +32,11 @@
         $rootScope.currentRoom = $stateParams.room;
 
         //Form field
-        var fields = [{name:'Answer 1', val:''}, {name:'Answer 2', val:''}];
+        var fields = [{name:'Solution 1', val:''}, {name:'Solution 2', val:''}];
         vm.showme = false;
         $scope.formData = {};
         $scope.formData.question;
+        $scope.formData.correctAnswerIndex;
         $scope.formData.dynamicFields = fields;
 
 
@@ -47,6 +48,7 @@
         vm.service.init();
 
         vm.submit = AdminpollService.submit;
+        vm.close = AdminpollService.close;
 
         socketio.on('msg_update_question', function (data) {
             data[0].total = 1;
@@ -55,6 +57,7 @@
         });
 
         socketio.on('msg_update_questions', function (data) {
+            console.log(data);
             $scope.questionsData = [];
             for(var i = 0; i < data.length; i++){
 
@@ -65,6 +68,10 @@
 
                 data[i].total = total >= 1 ? total : 1;
                 data[i].showme = true;
+
+                console.log("Status: " + data[i].status);
+                console.log("Index: " + data[i].correctAnswerIndex);
+
                 $scope.questionsData.push(data[i]);
             }
         });
@@ -94,13 +101,16 @@
             vm.msg = ' - ' + data.msg;
         });
 
+        socketio.on('msg_close_question', function (data) {
+            $scope.questionsData[data.qId].status = true;
+        });
+
         vm.addRow = function() {
             var newItemNum = $scope.formData.dynamicFields.length+1;
-            $scope.formData.dynamicFields.push( {name: 'Answer '+newItemNum, val: ''});
+            $scope.formData.dynamicFields.push( {name: 'Solution '+newItemNum, val: ''});
         };
 
         vm.removeRow = function () {
-
             if($scope.formData.dynamicFields.length > 2){
                 $scope.formData.dynamicFields.pop();
             }

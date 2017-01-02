@@ -6,7 +6,9 @@ var QuestionSchema = new Schema({
     roomId: {type: String, required: true},
     question: {type: String, required: true},
     possibilities: [String],
-    answers: [Number]
+    answers: [Number],
+    correctAnswerIndex: { type: Number, required: true},
+    status: { type: Boolean, default: false, required: true}
 });
 
 mongoose.model('Question', QuestionSchema);
