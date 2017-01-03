@@ -13,7 +13,7 @@
 		.module('openaudit')
 		.controller('HomeCtrl', Home);
 
-	Home.$inject = ['homeService'];
+	Home.$inject = ['$state', '$rootScope'];
 
 	/*
 	* recommend
@@ -21,13 +21,21 @@
 	* and bindable members up top.
 	*/
 
-	function Home(homeService) {
+	function Home($state, $rootScope) {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.title = "Hello, openaudit!";
-		vm.version = "1.0.0";
-		vm.listFeatures = homeService.getFeaturesList();
 
+		if(!$rootScope.isLogged){
+			$state.transitionTo('login');
+		}
+
+		vm.create = function () {
+			$state.transitionTo('managerooms');
+		};
+
+		vm.join = function () {
+			$state.transitionTo('watchrooms');
+		};
 	}
 
 })();

@@ -41,7 +41,7 @@
 						vm.msg = " - Successful login!";
 						$rootScope.isLogged = true;
 						$rootScope.username = vm.username;
-						$state.transitionTo('managerooms');
+						$state.transitionTo('home');
 					}
 				 }, function (err) {
 					vm.success = false;

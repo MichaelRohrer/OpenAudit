@@ -13,8 +13,7 @@ angular.module('openaudit')
 		$stateProvider
 			
 			.state('home', {
-				url: '',
-				abstract: true,
+				url: '/home',
 				templateUrl: 'app/modules/home/home.html',
 				controller: 'HomeCtrl',
 				controllerAs: 'vm'
