@@ -38,11 +38,14 @@
 		vm.nbRooms = 0;
 		vm.service = WatchroomsService;
 
-		vm.service.init(vm);
+		vm.service.init();
 
-		socketio.on('msg_update_rooms', function (data) {
-			console.log("Room should be updated !");
+		socketio.on('msg_get_rooms', function (data) {
 			vm.rooms = data;
+		});
+
+		socketio.on('msg_update_rooms', function () {
+			vm.service.init();
 		});
 
 		socketio.on('msg_leave_room', function () {

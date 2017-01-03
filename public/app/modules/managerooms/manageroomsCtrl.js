@@ -40,19 +40,10 @@
 
 		ManageroomsService.init();
 
+		vm.open = ManageroomsService.open;
 		vm.close = ManageroomsService.close;
 		vm.create = ManageroomsService.create;
 		vm.delete = ManageroomsService.delete;
-
-		vm.open = function (index) {
-
-			var data = {};
-			data.room = vm.rooms[index].name;
-
-			socketio.emit('msg_join_room', data);
-			console.log("Room: " + data.room + " joined");
-			$state.transitionTo('adminpoll', {room: vm.rooms[index].name});
-		};
 
 		socketio.on('msg_update_managed_rooms', function (data) {
 			vm.rooms = data;

@@ -15,6 +15,21 @@ function RealtimeService() {
 
         socketio.on("connection", function (socket) {
 
+            socket.on('msg_get_rooms', function () {
+                var query = Room.find({}).select('name owner closed -_id');
+
+                query.exec(function (err, rooms) {
+                    if (err) {
+                        console.log("Error retrieving rooms")
+                    }
+                    else {
+                        console.log("Success retrieving rooms");
+
+                        socket.emit('msg_get_rooms', rooms);
+                    }
+                });
+            });
+
             socket.on('msg_get_room_from_owner', function (data) {
 
                 var query = Room.find({owner: data.owner}).select('name owner closed -_id');
@@ -74,6 +89,42 @@ function RealtimeService() {
                 });
             });
 
+            socket.on('msg_open_room', function (data) {
+                if (data.room && data.owner) {
+                    Room.findOneAndUpdate(
+                        {name: data.room},
+                        {closed: data.status}, function (err) {
+                            if (err) {
+
+                                var response = {};
+                                response.status = 'nok';
+                                response.room = data.room;
+                                response.replyTo = 'msg_open_room';
+                                response.msg = "The room " + data.room + " can't be updated";
+
+                                socket.emit('msg_status', response);
+                                console.log("Error - > Room: " + data.room + " not updated.");
+                            }
+                            else {
+
+                                var query = Room.find({owner: data.owner}).select('name owner closed -_id');
+
+                                query.exec(function (err, rooms) {
+                                    if (err) {
+                                        console.log("Error updating rooms")
+                                    }
+                                    else {
+
+                                        socket.emit('msg_update_managed_rooms', rooms);
+                                        socketio.emit('msg_update_rooms');
+                                        console.log("Success - > Room: " + data.room + " opened.");
+                                    }
+                                });
+                            }
+                        }
+                    );
+                }
+            });
 
             socket.on('msg_close_room', function (data) {
                 if (data.room && data.owner) {
@@ -108,7 +159,7 @@ function RealtimeService() {
                                         response.msg = "The room " + data.room + " has been closed";
 
                                         socket.emit('msg_update_managed_rooms', rooms);
-                                        socketio.emit('msg_update_rooms', rooms);
+                                        socketio.emit('msg_update_rooms');
                                         socket.emit('msg_status', response);
 
                                         console.log("Success updating rooms");
@@ -123,40 +174,48 @@ function RealtimeService() {
 
             socket.on('msg_delete_room', function (data) {
                 if (data.room && data.owner) {
-                    Room.findOneAndRemove({name: data.room}, function (err) {
-                        if (err) {
 
-                            var response = {};
-                            response.status = 'nok';
-                            response.room = data.room;
-                            response.replyTo = 'msg_delete_room';
-                            response.msg = "The room " + data.room + " can't be deleted";
-
-                            socket.emit('msg_status', response);
-                            console.log("Error - > Room: " + data.room + " not removed.");
+                    Question.remove({roomId: data.room}, function (err) {
+                        if(err){
+                            console.log("Problem deleting question from room " + data.room);
                         }
-                        else {
-                            console.log("Success - > Room: " + data.room + " removed.");
-
-                            var query = Room.find({owner: data.owner}).select('name owner closed -_id');
-
-                            query.exec(function (err, rooms) {
+                        else{
+                            Room.findOneAndRemove({name: data.room}, function (err) {
                                 if (err) {
-                                    console.log("Error deleting rooms")
-                                }
-                                else {
 
                                     var response = {};
-                                    response.status = 'ok';
+                                    response.status = 'nok';
                                     response.room = data.room;
                                     response.replyTo = 'msg_delete_room';
-                                    response.msg = "The room " + data.room + " has been deleted";
+                                    response.msg = "The room " + data.room + " can't be deleted";
 
-                                    socketio.emit('msg_update_rooms', rooms);
-                                    socket.emit('msg_update_managed_rooms', rooms);
                                     socket.emit('msg_status', response);
+                                    console.log("Error - > Room: " + data.room + " not removed.");
+                                }
+                                else {
+                                    console.log("Success - > Room: " + data.room + " removed.");
 
-                                    console.log("Success deleting rooms");
+                                    var query = Room.find({owner: data.owner}).select('name owner closed -_id');
+
+                                    query.exec(function (err, rooms) {
+                                        if (err) {
+                                            console.log("Error deleting rooms")
+                                        }
+                                        else {
+
+                                            var response = {};
+                                            response.status = 'ok';
+                                            response.room = data.room;
+                                            response.replyTo = 'msg_delete_room';
+                                            response.msg = "The room " + data.room + " has been deleted";
+
+                                            socket.emit('msg_update_managed_rooms', rooms);
+                                            socketio.emit('msg_update_rooms');
+                                            socket.emit('msg_status', response);
+
+                                            console.log("Success deleting rooms");
+                                        }
+                                    });
                                 }
                             });
                         }

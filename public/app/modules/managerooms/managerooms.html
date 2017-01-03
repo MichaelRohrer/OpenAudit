@@ -58,9 +58,7 @@
 								<th>#</th>
 								<th>Name</th>
 								<th>Status</th>
-								<th>Open</th>
-								<th>Close</th>
-								<th>Delete</th>
+								<th>Action</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -69,9 +67,13 @@
 								<td>{{index.name}}</td>
 								<td ng-if="index.closed">Closed</td>
 								<td ng-if="!index.closed">Opened</td>
-								<td><button ng-click="vm.open($index)" type="button" class="btn btn-success">Open</button></td>
-								<td><button ng-click="vm.close($index, vm)" type="submit" class="btn btn-warning">Close</button></td>
-								<td><button ng-click="vm.delete($index, vm)" type="button" class="btn btn-danger">Delete</button></td>
+								<td>
+									<div class="btn-group">
+										<button ng-click="vm.open($index, vm)" type="button" class="btn btn-success">Open</button>
+										<button ng-click="vm.close($index, vm)" type="button" class="btn btn-warning">Close</button>
+										<button ng-click="vm.delete($index, vm)" type="button" class="btn btn-danger">Delete</button>
+									</div>
+								</td>
 							</tr>
 							</tbody>
 						</table>
