@@ -9,7 +9,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: /*process.env.DATABASE,*/'mongodb://localhost/code-production',
+    db: 'mongo',/*process.env.DATABASE,'mongodb://localhost/code-production',*/
 		apiUrl: 'http://localhost:3000',
     socketIoUrl: 'http://localhost:3000',
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
