@@ -112,5 +112,19 @@
                 $scope.formData.dynamicFields.pop();
             }
         };
+
+        vm.showQuestionForm = function () {
+
+            vm.showme = !vm.showme;
+
+            if(vm.showme){
+                //Form field
+                var fields = [{name:'Solution 1', val:''}, {name:'Solution 2', val:''}];
+                $scope.formData = {};
+                $scope.formData.question;
+                $scope.formData.correctAnswerIndex;
+                $scope.formData.dynamicFields = fields;
+            }
+        };
 	}
 })();

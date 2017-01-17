@@ -25,6 +25,11 @@
 		/*jshint validthis: true */
 		var vm = this;
 		vm.submit = RegisterService.register;
+
+		vm.username = '';
+		vm.password = '';
+		vm.password1 = '';
+
 		vm.login = function () {
 			$state.transitionTo('login');
 		}

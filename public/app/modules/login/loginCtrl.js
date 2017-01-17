@@ -26,6 +26,9 @@
 		var vm = this;
 		$rootScope.isLogged = false;
 
+		vm.username = '';
+		vm.password = '';
+
 		socketio.init();
 
 		vm.submit = LoginService.login;

@@ -27,26 +27,32 @@
 
 			function login(vm) {
 
-				$http({
-				 method : "POST",
-				 url : "/auth",
-				 headers: {'Content-Type': 'application/json'},
-				 data: {
-				 	 username: vm.username,
-					 password: vm.password
-				 }
-				 }).then(function (response) {
-				 	if(response.status == 200){
-						vm.success = true;
-						vm.msg = " - Successful login!";
-						$rootScope.isLogged = true;
-						$rootScope.username = vm.username;
-						$state.transitionTo('home');
-					}
-				 }, function (err) {
+				if(vm.username == '' || vm.password == ''){
 					vm.success = false;
-					vm.msg = " - Wrong username or password!";
-				});
+					vm.msg = " - All fields must bee fulfilled!";
+				}
+				else{
+					$http({
+						method : "POST",
+						url : "/auth",
+						headers: {'Content-Type': 'application/json'},
+						data: {
+							username: vm.username,
+							password: vm.password
+						}
+					}).then(function (response) {
+						if(response.status == 200){
+							vm.success = true;
+							vm.msg = " - Successful login!";
+							$rootScope.isLogged = true;
+							$rootScope.username = vm.username;
+							$state.transitionTo('home');
+						}
+					}, function (err) {
+						vm.success = false;
+						vm.msg = " - Wrong username or password!";
+					});
+				}
 			}
 		}
 })();

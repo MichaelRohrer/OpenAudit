@@ -22,7 +22,7 @@
         return services;
 
         function init() {
-            var ioUrl = "http://localhost:3000";
+            var ioUrl = "/";
             $window.socket = io(ioUrl);
         }
 
