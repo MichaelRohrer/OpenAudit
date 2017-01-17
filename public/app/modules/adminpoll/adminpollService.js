@@ -51,15 +51,21 @@
 				}
 
 				if(fulfilled && formData.question != ''){
-					var data = {};
-					data.room = $stateParams.room;
-					data.question = formData.question;
-					data.possibilities = possibilities;
-					data.answers = results;
-					data.correctAnswerIndex = formData.correctAnswerIndex;
+					if(formData.correctAnswerIndex != null){
+						var data = {};
+						data.room = $stateParams.room;
+						data.question = formData.question;
+						data.possibilities = possibilities;
+						data.answers = results;
+						data.correctAnswerIndex = formData.correctAnswerIndex;
 
-					vm.showme = false;
-					socketio.emit('msg_add_question', data, null);
+						vm.showme = false;
+						socketio.emit('msg_add_question', data, null);
+					}
+					else{
+						vm.success = false;
+						vm.msg = " - A solution should be selected";
+					}
 				}
 				else{
 					vm.success = false;

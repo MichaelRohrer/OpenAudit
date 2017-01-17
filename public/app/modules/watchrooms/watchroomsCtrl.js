@@ -24,6 +24,9 @@
 	function Watchrooms($scope, $rootScope, WatchroomsService, $state, socketio) {
 		/*jshint validthis: true */
 		var vm = this;
+		vm.name = '';
+		vm.showme = false;
+
 
 		if(!$rootScope.isLogged){
 			$state.transitionTo('login');
@@ -52,6 +55,19 @@
 			console.log("Room: " + $rootScope.currentRoom + " left.");
 			data.room = $rootScope.currentRoom;
 		});
+
+		vm.search = function() {
+
+			var data = {};
+			data.name = vm.name;
+
+			if(vm.name != ''){
+				socketio.emit('msg_search_rooms', data);
+			}
+			else{
+				socketio.emit('msg_get_rooms');
+			}
+		};
 
 		vm.join = function(index) {
 

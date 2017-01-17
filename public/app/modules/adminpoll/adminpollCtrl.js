@@ -36,7 +36,7 @@
         vm.showme = false;
         $scope.formData = {};
         $scope.formData.question;
-        $scope.formData.correctAnswerIndex;
+        $scope.formData.correctAnswerIndex = null;
         $scope.formData.dynamicFields = fields;
 
 
@@ -122,7 +122,7 @@
                 var fields = [{name:'Solution 1', val:''}, {name:'Solution 2', val:''}];
                 $scope.formData = {};
                 $scope.formData.question;
-                $scope.formData.correctAnswerIndex;
+                $scope.formData.correctAnswerIndex = null;
                 $scope.formData.dynamicFields = fields;
             }
         };

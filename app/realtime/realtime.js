@@ -15,8 +15,28 @@ function RealtimeService() {
 
         socketio.on("connection", function (socket) {
 
+            var amt = '.*amt.*';
+
             socket.on('msg_get_rooms', function () {
-                var query = Room.find({}).select('name owner closed -_id');
+                var query = Room.find({}).select('name owner closed -_id').sort('name');
+
+                query.exec(function (err, rooms) {
+                    if (err) {
+                        console.log("Error retrieving rooms")
+                    }
+                    else {
+                        console.log("Success retrieving rooms");
+
+                        socket.emit('msg_get_rooms', rooms);
+                    }
+                });
+            });
+
+            socket.on('msg_search_rooms', function (data) {
+
+                var regex = '.*' + data.name + '.*';
+
+                var query = Room.find({"name" : { $regex: regex, $options: 'i' }}).select('name owner closed -_id').sort('name');
 
                 query.exec(function (err, rooms) {
                     if (err) {
@@ -32,7 +52,7 @@ function RealtimeService() {
 
             socket.on('msg_get_room_from_owner', function (data) {
 
-                var query = Room.find({owner: data.owner}).select('name owner closed -_id');
+                var query = Room.find({owner: data.owner}).select('name owner closed -_id').sort('name');
 
                 query.exec(function (err, rooms) {
                     if (err) {
