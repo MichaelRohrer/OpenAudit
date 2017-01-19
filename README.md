@@ -56,6 +56,8 @@ Finally, a user should not be able to answer the question again if the page is r
 ## Installation
 1. Clone the repo: `git clone https://github.com/MichaelRohrer/OpenAudit`
 2. Enter the project folder: `cd OpenAudit/` and then simply use `docker-compose up`
+3. For Mac OS users: in your favorite navigator, write `localhost:3000` in the url bar to enter the web application
+4. For Windows users: in your favorite navigator, instead of localhost, use your Docker machine IP `<Docker IP>:3000` in the url bar to enter the web application
 
 ## Authors
 
