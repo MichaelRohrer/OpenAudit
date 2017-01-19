@@ -319,9 +319,6 @@ function RealtimeService() {
 
             socket.on('msg_close_question', function (data) {
 
-                console.log(data.roomId);
-                console.log(data.qId);
-
                 Question.findOneAndUpdate(
                     {
                         roomId: data.roomId,

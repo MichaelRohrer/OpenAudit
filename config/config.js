@@ -44,7 +44,7 @@ var config = {
       name: 'code'
     },
     port: process.env.PORT || 3000,
-    db: /*process.env.DATABASE,*/'mongodb://localhost/code-production',
+    db: process.env.MONGODB_URI,
     jwtsecret: process.env.JWTSECRET || 'supersecretsharedkey'
   }
 };

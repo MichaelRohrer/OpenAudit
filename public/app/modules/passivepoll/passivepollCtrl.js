@@ -60,8 +60,6 @@
 		});
 
 		socketio.on('msg_update_question_results', function (data) {
-			console.log(data);
-			console.log($scope.questionsData[data.index].answers);
 
 			var total = 0;
 			for(var i = 0; i < data.result.answers.length; i++){
@@ -71,8 +69,6 @@
 			$scope.questionsData[data.index].total = total >= 1 ? total : 1;
 
 			$scope.questionsData[data.index].answers = data.result.answers;
-			console.log($scope.questionsData[data.index].answers);
-			console.log("Result updated!");
 		});
 
 		socketio.on('msg_join_room', function () {

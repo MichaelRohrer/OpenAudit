@@ -88,8 +88,6 @@
 				data.room = vm.rooms[index].name;
 				data.owner = $rootScope.username;
 
-				console.log(data.room + " from " + data.owner);
-
 				socketio.emit('msg_delete_room', data, null);
 			}
 		}
