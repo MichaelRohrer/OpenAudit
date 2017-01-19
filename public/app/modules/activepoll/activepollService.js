@@ -12,15 +12,13 @@
   	angular
 		.module('activepoll')
 		.factory('ActivepollService', Activepoll);
-		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
-		// function Name ($http, someSevide) {...}
 
 		Activepoll.$inject = ['$rootScope', '$stateParams', 'socketio'];
 
 		function Activepoll ($rootScope, $stateParams, socketio) {
 
 			var services = {
-				init: init,
+				init: init
 			};
 
 			return services;
