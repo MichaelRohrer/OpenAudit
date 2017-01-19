@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This project is part of the TWEB course taught at HEIG-VD by professor Olivier Liechti. At this point, no functionalites have been implemented yet but the goal of this repostitory is to describe what will be done. Therefore, a brief description of coming soon functionalities can be found here. Moreover, urls of our web application in addition with short explanations of the transitions between screens are provided.
+This project is part of the TWEB course taught at HEIG-VD by professor Olivier Liechti. The purpose of it is to design an application which should allow a user to create surveys and answer questions. The application must also display data in real time (we used socket.io) and must display data visually (pie chart). Part of the application must be designed to be displayed and visible to everyone (for example, to the projector) to facilitate interaction between the surveyor and the participants. A display function was created to fulfill this last requirement.
 
 ## Landing page
 
@@ -13,43 +13,30 @@ Our landing page can be found on the following link:
 ## Web Application
 
 Our web app can be found on the following link:
-[https://safe-citadel-55958.herokuapp.com](https://safe-citadel-55958.herokuapp.com)
+[https://limitless-tor-21340.herokuapp.com/](https://limitless-tor-21340.herokuapp.com/)
 
-Note that this web app is only a Mockup which purpose is to guide the reader through the different transitions between screens while reading the "Description" section.
-
-## Sitemap
-
-Login page: [https://safe-citadel-55958.herokuapp.com/#!/login](https://safe-citadel-55958.herokuapp.com/#!/login)
-
-Register page: [https://safe-citadel-55958.herokuapp.com/#!/register](https://safe-citadel-55958.herokuapp.com/#!/register)
-
-Create Manage Rooms page: [https://safe-citadel-55958.herokuapp.com/#!/managerooms](https://safe-citadel-55958.herokuapp.com/#!/managerooms)
-
-Poll Admin page: [https://safe-citadel-55958.herokuapp.com/#!/adminpoll](https://safe-citadel-55958.herokuapp.com/#!/adminpoll)
-
-Join Follow Rooms page:[https://safe-citadel-55958.herokuapp.com/#!/watchrooms](https://safe-citadel-55958.herokuapp.com/#!/watchrooms)
-
-Poll Active page:[https://safe-citadel-55958.herokuapp.com/#!/activepoll](https://safe-citadel-55958.herokuapp.com/#!/activepoll)
-
-Poll Passive page:[https://safe-citadel-55958.herokuapp.com/#!/passivepoll](https://safe-citadel-55958.herokuapp.com/#!/passivepoll)
 
 ## Description
 
-This web application will be based on simple Interactive polls that can be found all over the internet. It is deployed on Heroku but its landing page on GitHub pages.
+This web application is based on simple Interactive polls that can be found all over the internet. It is deployed on Heroku but its landing page on GitHub pages.
 
-For the moment, the login page is used like a home page. Every user must first [register](https://safe-citadel-55958.herokuapp.com/#!/register) and then proceed to his [authentication](https://safe-citadel-55958.herokuapp.com/#!/login).
+The login page is used like a home page. Every user must first register and then proceed to his authentication
 
-In the top right menu, a user can click on [Create Manage Rooms](https://safe-citadel-55958.herokuapp.com/#!/managerooms). Here, if he clicks on the "new room" button, he will be able to create a room, which will then contain the interaction between the questions he would like to ask and the auditors. Once the room's name is entered, if the "create" button is pressed, the user will be redirected into the [Poll Admin](https://safe-citadel-55958.herokuapp.com/#!/adminpoll) page where he can create, via the "new question" button, multiple choice questions. Every time that the "submit" bouton is pressed, the question will be send to the corresponding room, where the auditors will see it and will be able to answer it. Note that all the previous created question are also displayed here (for exemple, click on the "question 1 " button to see the first created question).
+A user can click on Create Rooms and then if he clicks on the "new room" button, he will be able to create a room, which will then contain the interaction between the questions he would like to ask and the auditors. Once the room's name is entered, if the "create" button is pressed, the user will be redirected into the adminPoll page where he can create, via the "new question" button, multiple choice questions. He can add as many solutions as he wants and select the correct solution to the question. Every time that the "submit" bouton is pressed, the question will be send to the corresponding room, where the auditors will see it and will be able to answer it. Note that all the previous created question are also displayed here (for exemple, click on the "question 1 " button to see the first created question). Once the admin close a question, it can no more be answered and the solution is then displayed 
 
-Besides the possibility to create a new room in the [Create Manage Rooms](https://safe-citadel-55958.herokuapp.com/#!/managerooms) page, Note that all the previously created room from that user are displayed here. For each room, a user has the choice to open, close or delete it. The close button allowed a user to close a room, which means that this room will no longer be in the [Join Follow Rooms](https://safe-citadel-55958.herokuapp.com/#!/watchrooms) page. On the contrary, the open button will bring back the room to the available list, and the user will be redirected to the [Poll Admin](https://safe-citadel-55958.herokuapp.com/#!/adminpoll) page where he will be able to manage the questions. Finally, a room will be permanently deleted if the "delete" button is pressed.
+Besides the possibility to create a new room in the Create Manage Rooms page, Note that all the previously created room from that user are displayed here. For each room, a user has the choice to open, close or delete it. The close button allowed a user to close a room, which means that this room will no longer be in the Join Follow Rooms page. On the contrary, the open button will bring back the room to the available list, and the user will be redirected to the adminPoll page where he will be able to manage the questions. Finally, a room will be permanently deleted if the "delete" button is pressed.
 
-All the open rooms will be available inside the [Join Follow Rooms](https://safe-citadel-55958.herokuapp.com/#!/watchrooms) page. From there, a user can simply join a room, if he clicks on the corresponding button, and he will be redirected inside the [activepoll](https://safe-citadel-55958.herokuapp.com/#!/activepoll) page. Once a user is inside a room, he will be able to vote on the questions asked by the room's owner. Only the room creator will be able to ask questions. The other users will only be allowed to vote. After each vote, live statistics will be displayed on pie charts.
+All the open rooms will be available inside the Join Follow Rooms page. Note that there is a search bar, which is not cast sensitive. From there, a user can simply join a room, if he clicks on the corresponding button, and he will be redirected inside the activepoll page. Once a user is inside a room, he will be able to vote on the questions asked by the room's owner. Only the room creator will be able to ask questions. The other users will only be allowed to vote. After each vote, live statistics will be displayed on pie charts.
 
-Besides the possibility to join a room, a user may simply follow a room, using the corresponding button inside the [Join Follow Rooms](https://safe-citadel-55958.herokuapp.com/#!/watchrooms) page. He will then be redirected inside the [passivepoll](https://safe-citadel-55958.herokuapp.com/#!/passivepoll) page, where he will be able to follow the active poll but without any possibilities to answer the questions. This option may be useful, for exemple if a teacher wants to display the content of a room on the screen, while he's administrating this room.
+Besides the possibility to join a room, a user may simply follow a room, using the corresponding button inside the Join Follow Rooms page. He will then be redirected inside the passivePoll page, where he will be able to follow the active poll but without any possibilities to answer the questions. This option may be useful, for exemple if a teacher wants to display the content of a room on the screen, while he's administrating this room.
 
-Those would be the main functionalities but we also thought of more interressting things in terms of interactivity between the questions asked and the users. For exemple, we could set a timeout on each question which would stop the vote at the end of it. If our webapp becomes popular, we will have lots of available rooms. We could then add a search bar so that we can easily find the desired room (every room will have an id).
+## Next steps
 
-Note that those last functionalities will only be implemented if enough time remains.
+The first apsect to consider is the security. On the server side, we must implement a control to validate each action from any user, so that a user can only do what he is allowed. For exemple, a user should not be able to access the admin side of a room.
+
+Secondly, we could add a password to access a room. Since every room are public, maybe the presentor does not want any users that are not physically present in the current presentation, to be able to follow or answer the questions (confidentiallity).
+
+Finally, a user should not be able to answer the question again if the page is refreshed
 
 ## Technology used
 
@@ -57,6 +44,8 @@ Note that those last functionalities will only be implemented if enough time rem
 - Node v4.4.7
 - Express v4.13.3
 - Mongoose v4.1.2
+- MongoDB v3.4.1
+- Docker v1.12
 - Chart.js v1.0.3
 - Bootstrap v3.3.6
 - SocketIo v1.5.1
@@ -66,11 +55,7 @@ Note that those last functionalities will only be implemented if enough time rem
 
 ## Installation
 1. Clone the repo: `git clone https://github.com/MichaelRohrer/OpenAudit`
-2. Install the dependencies for the server: `cd OpenAudit/` and then `npm install` 
-3. Then, install the dependencies for the web app: `cd public/` and then `npm install`
-4. Launch the web app from the public folder: `grunt dev`
-
-For the moment, the server app is set up to work on heroku but not locally.
+2. Enter the project folder: `cd OpenAudit/` and then simply use `docker-compose up`
 
 ## Authors
 
