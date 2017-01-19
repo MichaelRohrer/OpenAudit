@@ -52,8 +52,10 @@
 		});
 
 		socketio.on('msg_leave_room', function () {
-			console.log("Room: " + $rootScope.currentRoom + " left.");
-			data.room = $rootScope.currentRoom;
+			if($rootScope.currentRoom != null){
+				console.log("Room: " + $rootScope.currentRoom + " left");
+			}
+			$rootScope.currentRoom = null;
 		});
 
 		vm.search = function() {

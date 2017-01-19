@@ -81,7 +81,7 @@
         });
 
         socketio.on('msg_join_room', function () {
-            console.log("Room: " + $stateParams.room + " joined.")
+            console.log("Room: " + $stateParams.room + " joined")
         });
 
         socketio.on('msg_status', function (data) {

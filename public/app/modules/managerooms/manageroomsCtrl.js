@@ -50,7 +50,9 @@
 		});
 
 		socketio.on('msg_leave_room', function () {
-			console.log("Room: " + $rootScope.currentRoom + " left");
+			if($rootScope.currentRoom != null){
+				console.log("Room: " + $rootScope.currentRoom + " left");
+			}
 			$rootScope.currentRoom = null;
 		});
 
@@ -63,7 +65,6 @@
 				var reply = {};
 				reply.room = data.room;
 				socketio.emit('msg_join_room', reply);
-				console.log("Room: " + data.room + " joined");
 				$state.transitionTo('adminpoll', {room: data.room});
 			}
 		});
